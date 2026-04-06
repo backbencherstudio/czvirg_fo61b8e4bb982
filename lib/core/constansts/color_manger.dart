@@ -6,7 +6,7 @@ class ColorManager {
   ColorManager._();
 
   // ===== Primary Colors =====
-  static const Color primary = Color(0xFF00136B);
+  static const Color primary = Color(0xFF4ECDC4);
   static const Color primaryLight = Color(0xFF334289);
   static const Color primaryDark = Color(0xFF000C48);
 
@@ -18,7 +18,7 @@ class ColorManager {
 
   // ===== Text Colors =====
   static const Color textPrimary = Color(0xFF212121);
-  static const Color textSecondary = Color(0xFF757575);
+  static const Color textSecondary = Color(0xFFA0A0A0);
   static const Color titleText = Color(0xFF2F3131);
   static const Color titleText1 = Color(0xFF535353);
   static const Color subtitleText = Color(0xFF686868);
@@ -30,7 +30,7 @@ class ColorManager {
   static const Color hintText = Color(0xFF5B5F5F);
 
   // ===== Neutral Colors =====
-  static const Color blackColor = Color(0xFF000000);
+  static const Color blackColor = Color(0xFF070908);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color transparentColor = Colors.transparent;
 

@@ -14,18 +14,18 @@ class AppString {
 
   // Bottom Navigation
   static const String home = "Home";
-  static const String search = "Search";
-  static const String favorites = "Favorites";
-  static const String profile = "Profile";
+  static const String exercises = "Exercises";
+  static const String progress = "Progress";
+  static const String benefits = "Benefits";
+  static const String settings = "Settings";
 
   // Home Screen
-  static const String welcomeMessage = "Welcome Back!";
-  static const String welcomeSubtitle = "Here's what's happening today";
+  static const String breathingPractices = "Breathing Practices";
+  static const String startYourSession = "Start your session";
   static const String quickActions = "Quick Actions";
   static const String explore = "Explore";
   static const String notifications = "Notifications";
   static const String analytics = "Analytics";
-  static const String settings = "Settings";
   static const String recentActivity = "Recent Activity";
   static const String activityItem = "Activity Item";
   static const String activityDescription = "Tap to view details";

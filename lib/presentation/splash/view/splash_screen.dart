@@ -1,160 +1,67 @@
+import 'package:czvirg_fo61b8e4bb982/core/route/route_name.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:video_player/video_player.dart';
 
-import '../../../core/constansts/color_manger.dart';
-import '../../../core/resource/app_strings.dart';
-import '../../../core/route/route_name.dart';
-
-class SplashScreen extends ConsumerStatefulWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  ConsumerState<SplashScreen> createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends ConsumerState<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _fadeAnimation;
-  late Animation<double> _scaleAnimation;
+class _SplashScreenState extends State<SplashScreen> {
+  late VideoPlayerController _controller;
+  bool _navigated = false;
 
   @override
   void initState() {
     super.initState();
-    _initAnimation();
-    _navigateToNextScreen();
+    initVideo();
   }
 
-  void _initAnimation() {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
+  Future<void> initVideo() async {
+    _controller = VideoPlayerController.asset(
+      "assets/images/animatedCVlogo.mp4",
     );
 
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
-      ),
-    );
+    await _controller.initialize();
+    await _controller.play();
+    _controller.setLooping(false);
 
-    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: const Interval(0.0, 0.5, curve: Curves.easeOutBack),
-      ),
-    );
+    _controller.addListener(() {
+      final isFinished =
+          _controller.value.position >= _controller.value.duration;
 
-    _animationController.forward();
-  }
+      if (isFinished && !_navigated && mounted) {
+        _navigated = true;
 
-  Future<void> _navigateToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 2));
+        Navigator.pushReplacementNamed(context, RouteName.bottomNavRoute);
+      }
+    });
 
-    if (mounted) {
-      // Navigate to main screen
-      // You can add logic here to check for:
-      // - First time user -> Onboarding
-      // - Logged in user -> Bottom Nav
-      // - Not logged in -> Login
-
-      Navigator.pushReplacementNamed(context, RouteName.bottomNavRoute);
-    }
+    setState(() {});
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [ColorManager.primary, ColorManager.primaryDark],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: AnimatedBuilder(
-          animation: _animationController,
-          builder: (context, child) {
-            return Opacity(
-              opacity: _fadeAnimation.value,
-              child: Transform.scale(
-                scale: _scaleAnimation.value,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // App Logo Placeholder
-                    Container(
-                      width: 120.w,
-                      height: 120.h,
-                      decoration: BoxDecoration(
-                        color: ColorManager.whiteColor,
-                        borderRadius: BorderRadius.circular(24),
-                        boxShadow: [
-                          BoxShadow(
-                            color: ColorManager.blackColor.withValues(
-                              alpha: 0.2,
-                            ),
-                            blurRadius: 20,
-                            offset: const Offset(0, 10),
-                          ),
-                        ],
-                      ),
-                      child: Icon(
-                        Icons.flutter_dash,
-                        size: 60,
-                        color: ColorManager.primary,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-
-                    // App Name
-                    Text(
-                      AppString.appName,
-                      style: TextStyle(
-                        fontSize: 32.sp,
-                        fontWeight: FontWeight.bold,
-                        color: ColorManager.whiteColor,
-                        letterSpacing: 1.5,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-
-                    // Tagline
-                    Text(
-                      AppString.splashSubtitle,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        color: ColorManager.whiteColor.withValues(alpha: 0.8),
-                      ),
-                    ),
-                    SizedBox(height: 48.h),
-
-                    // Loading Indicator
-                    SizedBox(
-                      width: 32.w,
-                      height: 32.h,
-                      child: CircularProgressIndicator(
-                        color: ColorManager.whiteColor,
-                        strokeWidth: 3,
-                      ),
-                    ),
-                  ],
-                ),
+      backgroundColor: Colors.black,
+      body: _controller.value.isInitialized
+          ? Center(
+              child: SizedBox(
+                width: 303.w,
+                height: 276.h,
+                child: VideoPlayer(_controller),
               ),
-            );
-          },
-        ),
-      ),
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }
