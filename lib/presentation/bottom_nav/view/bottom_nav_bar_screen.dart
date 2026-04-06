@@ -1,57 +1,65 @@
+import 'package:czvirg_fo61b8e4bb982/core/resource/style_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../core/constansts/color_manger.dart';
+import '../../../core/constansts/icon_manager.dart';
 import '../../../core/resource/app_strings.dart';
 import '../../home/view/home_screen.dart';
-import '../../search/view/search_screen.dart';
-import '../../favorites/view/favorites_screen.dart';
-import '../../profile/view/profile_screen.dart';
 import '../viewmodel/bottom_nav_provider.dart';
 
 class BottomNavBarScreen extends ConsumerWidget {
   const BottomNavBarScreen({super.key});
 
-  /// List of screens for bottom navigation
+  /// Screens for bottom navigation
   static const List<Widget> _screens = [
     HomeScreen(),
-    SearchScreen(),
-    FavoritesScreen(),
-    ProfileScreen(),
-  ];
-
-  /// List of navigation items
-  static const List<BottomNavigationBarItem> _navItems = [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.home_outlined),
-      activeIcon: Icon(Icons.home),
-      label: AppString.home,
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.search_outlined),
-      activeIcon: Icon(Icons.search),
-      label: AppString.search,
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.favorite_outline),
-      activeIcon: Icon(Icons.favorite),
-      label: AppString.favorites,
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.person_outline),
-      activeIcon: Icon(Icons.person),
-      label: AppString.profile,
-    ),
+    Scaffold(body: Center(child: Text("Exercises"))),
+    Scaffold(body: Center(child: Text("Progress"))),
+    Scaffold(body: Center(child: Text("Benefits"))),
+    Scaffold(body: Center(child: Text("Settings"))),
   ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(bottomNavIndexProvider);
 
+    final navItems = [
+      _buildNavItem(
+        label: AppString.home,
+        iconPath: IconManager.homeSvg,
+        isSelected: currentIndex == 0,
+      ),
+      _buildNavItem(
+        label: AppString.exercises,
+        iconPath: IconManager.exercisesSvg,
+        isSelected: currentIndex == 1,
+      ),
+      _buildNavItem(
+        label: AppString.progress,
+        iconPath: IconManager.progressSvg,
+        isSelected: currentIndex == 2,
+      ),
+      _buildNavItem(
+        label: AppString.benefits,
+        iconPath: IconManager.benefitsSvg,
+        isSelected: currentIndex == 3,
+      ),
+      _buildNavItem(
+        label: AppString.settings,
+        iconPath: IconManager.settingsSvg,
+        isSelected: currentIndex == 4,
+      ),
+    ];
+
     return Scaffold(
+      backgroundColor: ColorManager.blackColor,
       body: IndexedStack(index: currentIndex, children: _screens),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: ColorManager.whiteColor)),
+          color: ColorManager.blackColor,
           boxShadow: [
             BoxShadow(
               color: ColorManager.shadowColor,
@@ -66,21 +74,41 @@ class BottomNavBarScreen extends ConsumerWidget {
             ref.read(bottomNavIndexProvider.notifier).setIndex(index);
           },
           type: BottomNavigationBarType.fixed,
-          backgroundColor: ColorManager.whiteColor,
+          backgroundColor: ColorManager.blackColor,
           selectedItemColor: ColorManager.primary,
           unselectedItemColor: ColorManager.textSecondary,
-          selectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 12,
-          ),
-          unselectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.normal,
-            fontSize: 12,
+          selectedLabelStyle: getRegular400Style14(color: ColorManager.primary),
+          unselectedLabelStyle: getRegular400Style14(
+            color: ColorManager.textSecondary,
           ),
           elevation: 0,
-          items: _navItems,
+          items: navItems,
         ),
       ),
+    );
+  }
+
+  /// Reusable bottom nav item
+  BottomNavigationBarItem _buildNavItem({
+    required String label,
+    required String iconPath,
+    required bool isSelected,
+  }) {
+    return BottomNavigationBarItem(
+      icon: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.h),
+        child: SvgPicture.asset(
+          iconPath,
+          height: 24,
+          width: 24,
+          colorFilter: ColorFilter.mode(
+            isSelected ? ColorManager.primary : ColorManager.textSecondary,
+            BlendMode.srcIn,
+          ),
+        ),
+      ),
+
+      label: label,
     );
   }
 }
