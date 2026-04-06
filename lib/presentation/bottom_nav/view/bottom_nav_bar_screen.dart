@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../core/constansts/color_manger.dart';
 import '../../../core/constansts/icon_manager.dart';
-import '../../../core/resource/app_strings.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../home/view/home_screen.dart';
 import '../viewmodel/bottom_nav_provider.dart';
 
@@ -24,30 +24,30 @@ class BottomNavBarScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(bottomNavIndexProvider);
-
+    final l10n = AppLocalizations.of(context)!;
     final navItems = [
       _buildNavItem(
-        label: AppString.home,
+        label: l10n.home,
         iconPath: IconManager.homeSvg,
         isSelected: currentIndex == 0,
       ),
       _buildNavItem(
-        label: AppString.exercises,
+        label: l10n.exercises,
         iconPath: IconManager.exercisesSvg,
         isSelected: currentIndex == 1,
       ),
       _buildNavItem(
-        label: AppString.progress,
+        label: l10n.progress,
         iconPath: IconManager.progressSvg,
         isSelected: currentIndex == 2,
       ),
       _buildNavItem(
-        label: AppString.benefits,
+        label: l10n.benefits,
         iconPath: IconManager.benefitsSvg,
         isSelected: currentIndex == 3,
       ),
       _buildNavItem(
-        label: AppString.settings,
+        label: l10n.settings,
         iconPath: IconManager.settingsSvg,
         isSelected: currentIndex == 4,
       ),

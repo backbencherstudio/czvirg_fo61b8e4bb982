@@ -1,0 +1,16 @@
+{
+
+    "bottomNavigation": "--------------Bottom Navigation--------------",
+    "home": "Home",
+    "exercises": "Exercises",
+    "progress": "Progress",
+    "benefits": "Benefits",
+    "settings": "Settings",
+
+    "homeScreen": "--------------Home Screen--------------",
+    "breathingPractices": "Breathing Practices",
+    "startYourSession": "Start your session",
+    "lifeEducationSeries": "Life Education Series",
+    "videoLibraryAndResources": "Video library & resources",
+    "comingSoon": "Coming Soon"
+}

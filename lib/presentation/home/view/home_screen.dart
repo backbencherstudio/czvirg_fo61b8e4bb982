@@ -1,21 +1,25 @@
 import 'package:czvirg_fo61b8e4bb982/core/constansts/icon_manager.dart';
 import 'package:czvirg_fo61b8e4bb982/core/constansts/image_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../core/constansts/color_manger.dart';
+import '../../../l10n/app_localizations.dart';
+import '../viewmodel/role_selection_provider.dart';
+import 'widgets/menu_selection_card.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final selectedRole = ref.watch(roleSelectionProvider);
     return Scaffold(
       backgroundColor: ColorManager.blackColor,
       body: Padding(
@@ -31,34 +35,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 200,
               ),
               60.verticalSpace,
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-                decoration: BoxDecoration(
-                  color: ColorManager.primary.withValues(alpha: 0.13),
-                  borderRadius: BorderRadius.circular(8.r),
-                  border: Border.all(color: ColorManager.primary),
+              GestureDetector(
+                onTap: () {
+                  ref
+                      .read(roleSelectionProvider.notifier)
+                      .selectRole('breathing');
+                },
+                child: MenuSelectionCard(
+                  title: l10n.breathingPractices,
+                  subtitle: l10n.startYourSession,
+                  iconPath: IconManager.exercisesSvg,
+                  isSelected: selectedRole == 'breathing',
                 ),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: ColorManager.primary.withValues(alpha: 0.13),
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(10.r),
-                        child: SvgPicture.asset(
-                          IconManager.exercisesSvg,
-                          height: 44.h,
-                          width: 44.w,
-                        ),
-                      ),
-                    ),
-                    12.horizontalSpace,
-                    Column(children: [
-                      Text('')
-                    ],)
-                  ],
+              ),
+              16.verticalSpace,
+              GestureDetector(
+                onTap: () {
+                  ref
+                      .read(roleSelectionProvider.notifier)
+                      .selectRole('education');
+                },
+                child: MenuSelectionCard(
+                  title: l10n.lifeEducationSeries,
+                  subtitle: l10n.videoLibraryAndResources,
+                  iconPath: IconManager.educationSvg,
+                  isSelected: selectedRole == 'education',
                 ),
               ),
             ],
