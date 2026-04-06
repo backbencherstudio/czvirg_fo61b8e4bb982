@@ -5,4 +5,7 @@ class IconManager {
   static String progressSvg = '$baseUrl/progress.svg';
   static String benefitsSvg = '$baseUrl/benefits.svg';
   static String settingsSvg = '$baseUrl/settings.svg';
+
+
+  static String educationSvg = '$baseUrl/education.svg';
 }

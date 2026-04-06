@@ -17,7 +17,7 @@ class ColorManager {
   static const Color scaffoldDark = Color(0xFF1E1E1E);
 
   // ===== Text Colors =====
-  static const Color textPrimary = Color(0xFF212121);
+  static const Color textPrimary = Color(0xFFF0F0F0);
   static const Color textSecondary = Color(0xFFA0A0A0);
   static const Color titleText = Color(0xFF2F3131);
   static const Color titleText1 = Color(0xFF535353);
