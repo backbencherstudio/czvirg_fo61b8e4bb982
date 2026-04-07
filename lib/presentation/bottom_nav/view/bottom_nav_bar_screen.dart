@@ -71,7 +71,7 @@ class BottomNavBarScreen extends ConsumerWidget {
         child: BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: (index) {
-            ref.read(bottomNavIndexProvider.notifier).setIndex(index);
+            ref.read(bottomNavIndexProvider.notifier).onTabIndex(index);
           },
           type: BottomNavigationBarType.fixed,
           backgroundColor: ColorManager.blackColor,

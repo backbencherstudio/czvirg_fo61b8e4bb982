@@ -19,7 +19,7 @@ class ColorManager {
   // ===== Text Colors =====
   static const Color textPrimary = Color(0xFFF0F0F0);
   static const Color textSecondary = Color(0xFFA0A0A0);
-  static const Color titleText = Color(0xFF2F3131);
+  static const Color titleText = Color(0xFF8DBBE3);
   static const Color titleText1 = Color(0xFF535353);
   static const Color subtitleText = Color(0xFF686868);
   static const Color subtitleText1 = Color(0xFF60655C);

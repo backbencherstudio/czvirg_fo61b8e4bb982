@@ -8,4 +8,8 @@ class IconManager {
 
 
   static String educationSvg = '$baseUrl/education.svg';
+  static String tdesignMoon = '$baseUrl/tdesign_moon.svg';
+  static String icRoundAir = '$baseUrl/ic_round_air.svg';
+  static String radixIconsBox = '$baseUrl/radix_icons_box.svg';
+  static String heroiconsAdjustments = '$baseUrl/heroicons_adjustments.svg';
 }

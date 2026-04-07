@@ -22,7 +22,7 @@ class MyApp extends ConsumerWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: (context, child) => MaterialApp(
-        title: 'Riverpod MVVM Demo',
+        title: 'CLARAVIDA',
         debugShowCheckedModeBanner: false,
         theme: getApplicationTheme(),
         localizationsDelegates: [
