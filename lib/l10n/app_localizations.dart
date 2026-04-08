@@ -166,6 +166,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coming Soon'**
   String get comingSoon;
+
+  /// No description provided for @breathingPractiseScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'--------------Breathing Practise Screen--------------'**
+  String get breathingPractiseScreen;
+
+  /// No description provided for @chooseATechniqueThatMatchesYourNeeds.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a technique that matches your needs'**
+  String get chooseATechniqueThatMatchesYourNeeds;
+
+  /// No description provided for @fourSevenEightRelaxation.
+  ///
+  /// In en, this message translates to:
+  /// **'4–7–8 Relaxation'**
+  String get fourSevenEightRelaxation;
+
+  /// No description provided for @calmYourNervousSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm your nervous system'**
+  String get calmYourNervousSystem;
+
+  /// No description provided for @inOut.
+  ///
+  /// In en, this message translates to:
+  /// **'4 In | 4 Out'**
+  String get inOut;
+
+  /// No description provided for @theSimplestAndMostNaturalBreathing.
+  ///
+  /// In en, this message translates to:
+  /// **'The simplest and most natural breathing...'**
+  String get theSimplestAndMostNaturalBreathing;
+
+  /// No description provided for @boxBreathing.
+  ///
+  /// In en, this message translates to:
+  /// **'Box Breathing'**
+  String get boxBreathing;
+
+  /// No description provided for @aPowerfulTechniqueUsedByNavySEALs.
+  ///
+  /// In en, this message translates to:
+  /// **'A powerful technique used by Navy SEALs'**
+  String get aPowerfulTechniqueUsedByNavySEALs;
+
+  /// No description provided for @customMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Mode'**
+  String get customMode;
+
+  /// No description provided for @setYourOwnBreathingPattern.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your own breathing pattern'**
+  String get setYourOwnBreathingPattern;
+
+  /// No description provided for @beginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get beginner;
+
+  /// No description provided for @balance.
+  ///
+  /// In en, this message translates to:
+  /// **'Balance'**
+  String get balance;
+
+  /// No description provided for @dailyUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Use'**
+  String get dailyUse;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

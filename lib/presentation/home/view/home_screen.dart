@@ -1,5 +1,6 @@
 import 'package:czvirg_fo61b8e4bb982/core/constansts/icon_manager.dart';
 import 'package:czvirg_fo61b8e4bb982/core/constansts/image_manager.dart';
+import 'package:czvirg_fo61b8e4bb982/core/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,6 +41,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ref
                       .read(roleSelectionProvider.notifier)
                       .selectRole('breathing');
+                  Navigator.pushNamed(
+                    context,
+                    RouteName.breathingPractiveScreen,
+                  );
                 },
                 child: MenuSelectionCard(
                   title: l10n.breathingPractices,

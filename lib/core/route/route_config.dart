@@ -9,8 +9,14 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const BottomNavBarScreen());
       case RouteName.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
-      // case RouteName.registerRoute:
-      //   return MaterialPageRoute(builder: (_) => const SignUpScreen());
+      case RouteName.breathingPractiveScreen:
+        return MaterialPageRoute(
+          builder: (_) => const BreathingPractiveScreen(),
+        );
+      case RouteName.inhaleHoldExhaleScreen:
+        return MaterialPageRoute(
+          builder: (_) => const InhaleHoldExhaleScreen(),
+        );
       default:
         return unDefineRoute();
     }

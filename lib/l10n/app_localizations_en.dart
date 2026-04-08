@@ -43,4 +43,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get comingSoon => 'Coming Soon';
+
+  @override
+  String get breathingPractiseScreen => '--------------Breathing Practise Screen--------------';
+
+  @override
+  String get chooseATechniqueThatMatchesYourNeeds => 'Choose a technique that matches your needs';
+
+  @override
+  String get fourSevenEightRelaxation => '4–7–8 Relaxation';
+
+  @override
+  String get calmYourNervousSystem => 'Calm your nervous system';
+
+  @override
+  String get inOut => '4 In | 4 Out';
+
+  @override
+  String get theSimplestAndMostNaturalBreathing => 'The simplest and most natural breathing...';
+
+  @override
+  String get boxBreathing => 'Box Breathing';
+
+  @override
+  String get aPowerfulTechniqueUsedByNavySEALs => 'A powerful technique used by Navy SEALs';
+
+  @override
+  String get customMode => 'Custom Mode';
+
+  @override
+  String get setYourOwnBreathingPattern => 'Set your own breathing pattern';
+
+  @override
+  String get beginner => 'Beginner';
+
+  @override
+  String get balance => 'Balance';
+
+  @override
+  String get dailyUse => 'Daily Use';
 }

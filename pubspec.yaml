@@ -48,6 +48,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   video_player:
   flutter_svg: ^2.0.10
+  percent_indicator: ^4.2.5
 
 dev_dependencies:
   flutter_test:
