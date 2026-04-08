@@ -26,7 +26,7 @@ class ColorManager {
   static const Color mediumText = Color(0xFF363A33);
 
   // ===== Button & Label Colors =====
-  static const Color buttonText = Color(0xFF334289);
+  static const Color buttonText = Color(0xFF080808);
   static const Color hintText = Color(0xFF5B5F5F);
 
   // ===== Neutral Colors =====
@@ -35,7 +35,7 @@ class ColorManager {
   static const Color transparentColor = Colors.transparent;
 
   // ===== Border Colors =====
-  static const Color borderColor = Color(0xFFDADADA);
+  static Color borderColor = Color(0xFF7BC8E8).withValues(alpha: 0.33);
   static const Color borderColor1 = Color(0xFF00136B);
 
   // ===== Container & Fill Colors =====
