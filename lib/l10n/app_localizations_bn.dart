@@ -43,4 +43,43 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get comingSoon => 'শীঘ্রই আসছে';
+
+  @override
+  String get breathingPractiseScreen => '--------------শ্বাস-প্রশ্বাসের অনুশীলন স্ক্রিন--------------';
+
+  @override
+  String get chooseATechniqueThatMatchesYourNeeds => 'আপনার প্রয়োজন অনুযায়ী একটি পদ্ধতি বেছে নিন';
+
+  @override
+  String get fourSevenEightRelaxation => '৪–৭–৮ শিথিলকরণ';
+
+  @override
+  String get calmYourNervousSystem => 'আপনার স্নায়ুতন্ত্রকে শান্ত করুন';
+
+  @override
+  String get inOut => '৪ ভিতরে | ৪ বাইরে';
+
+  @override
+  String get theSimplestAndMostNaturalBreathing => 'সবচেয়ে সহজ এবং স্বাভাবিক শ্বাস-প্রশ্বাস...';
+
+  @override
+  String get boxBreathing => 'বক্স ব্রিদিং';
+
+  @override
+  String get aPowerfulTechniqueUsedByNavySEALs => 'নেভি সিলদের ব্যবহৃত একটি শক্তিশালী কৌশল';
+
+  @override
+  String get customMode => 'কাস্টম মোড';
+
+  @override
+  String get setYourOwnBreathingPattern => 'আপনার নিজস্ব শ্বাস-প্রশ্বাসের প্যাটার্ন সেট করুন';
+
+  @override
+  String get beginner => 'নতুনদের জন্য';
+
+  @override
+  String get balance => 'ভারসাম্য';
+
+  @override
+  String get dailyUse => 'দৈনন্দিন ব্যবহার';
 }

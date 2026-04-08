@@ -13,6 +13,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const BreathingPractiveScreen(),
         );
+      case RouteName.inhaleHoldExhaleScreen:
+        return MaterialPageRoute(
+          builder: (_) => const InhaleHoldExhaleScreen(),
+        );
       default:
         return unDefineRoute();
     }

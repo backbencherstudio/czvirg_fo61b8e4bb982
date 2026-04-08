@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import '../../../core/constansts/icon_manager.dart';
+import '../../../l10n/app_localizations.dart';
 
 class BreathPracticeModel {
   final String title;
@@ -41,35 +43,38 @@ class BreathPracticeModel {
 }
 
 class BreathPracticeData {
-  static List<BreathPracticeModel> practices = [
-    BreathPracticeModel(
-      title: '4–7–8 Relaxation',
-      time: '4/7/8',
-      subTitle: 'Calm your nervous system',
-      image: IconManager.tdesignMoon,
-      tags: ['Beginner', 'Balance', 'Daily Use'],
-    ),
-    BreathPracticeModel(
-      title: '4 In | 4 Out',
-      time: '4/4',
-      subTitle: 'The simplest and most natural breathing...',
-      image: IconManager.icRoundAir,
-      tags: ['Beginner', 'Balance', 'Daily Use'],
-    ),
-    BreathPracticeModel(
-      title: 'Box Breathing',
-      time: '4/4/4/4',
-      subTitle: 'A powerful technique used by Navy SEALs',
-      image: IconManager.radixIconsBox,
-      tags: ['Beginner', 'Balance', 'Daily Use'],
-    ),
-    BreathPracticeModel(
-      title: 'Custom Mode',
-      time: '',
-      subTitle: 'Set your own breathing pattern',
-      image: IconManager.heroiconsAdjustments,
-      isCustom: true,
-      tags: [],
-    ),
-  ];
+  static List<BreathPracticeModel> getPractices(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return [
+      BreathPracticeModel(
+        title: l10n.fourSevenEightRelaxation,
+        time: '4/7/8',
+        subTitle: l10n.calmYourNervousSystem,
+        image: IconManager.tdesignMoon,
+        tags: [l10n.beginner, l10n.balance, l10n.dailyUse],
+      ),
+      BreathPracticeModel(
+        title: l10n.inOut,
+        time: '4/4',
+        subTitle: l10n.theSimplestAndMostNaturalBreathing,
+        image: IconManager.icRoundAir,
+        tags: [l10n.beginner, l10n.balance, l10n.dailyUse],
+      ),
+      BreathPracticeModel(
+        title: l10n.boxBreathing,
+        time: '4/4/4/4',
+        subTitle: l10n.aPowerfulTechniqueUsedByNavySEALs,
+        image: IconManager.radixIconsBox,
+        tags: [l10n.beginner, l10n.balance, l10n.dailyUse],
+      ),
+      BreathPracticeModel(
+        title: l10n.customMode,
+        time: '',
+        subTitle: l10n.setYourOwnBreathingPattern,
+        image: IconManager.heroiconsAdjustments,
+        isCustom: true,
+        tags: [],
+      ),
+    ];
+  }
 }

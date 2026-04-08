@@ -12,4 +12,8 @@ class IconManager {
   static String icRoundAir = '$baseUrl/ic_round_air.svg';
   static String radixIconsBox = '$baseUrl/radix_icons_box.svg';
   static String heroiconsAdjustments = '$baseUrl/heroicons_adjustments.svg';
+
+  static String speaker = '$baseUrl/speaker.svg';
+  static String biPhone = '$baseUrl/bi_phone.svg';
+  static String iconsStop = '$baseUrl/icons_stop.svg';
 }

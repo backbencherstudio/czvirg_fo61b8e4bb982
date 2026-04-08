@@ -3,4 +3,5 @@ class RouteName {
   static const String bottomNavRoute = "/bottomNav";
   static const String homeScreen = "/HomeScreen";
   static const String breathingPractiveScreen = "/BreathingPractiveScreen";
+  static const String inhaleHoldExhaleScreen = "/InhaleHoldExhaleScreen";
 }
