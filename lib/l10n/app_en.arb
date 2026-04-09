@@ -26,5 +26,22 @@
     "setYourOwnBreathingPattern": "Set your own breathing pattern",
     "beginner": "Beginner",
     "balance": "Balance",
-    "dailyUse": "Daily Use"
+    "dailyUse": "Daily Use",
+
+    "inhaleHoldExhaleScreen": "--------------Inhale Hold Exhale Screen--------------",
+    "inhale": "INHALE",
+    "hold": "HOLD",
+    "exhale": "EXHALE",
+    "fiveCyclesLeft": "5 cycles left",
+    "fourCyclesLeft": "4 cycles left",
+    "paused": "Paused",
+    "resumeSession": "Resume Session",
+    "quitSession": "Quit Session",
+    "sessionComplete": "Session Complete!",
+    "wellDoneTakeAMomentToNoticeHowYouFeel": "Well done. Take a moment to notice how you feel.",
+    "duration": "Duration",
+    "cycles": "Cycles",
+    "mode": "Mode",
+    "breatheAgain": "Breathe Again",
+    "returnHome": "Return Home"
 }

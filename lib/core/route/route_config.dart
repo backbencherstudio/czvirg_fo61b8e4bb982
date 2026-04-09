@@ -17,6 +17,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const InhaleHoldExhaleScreen(),
         );
+      case RouteName.progressScreen:
+        return MaterialPageRoute(builder: (_) => const ProgressScreen());
       default:
         return unDefineRoute();
     }

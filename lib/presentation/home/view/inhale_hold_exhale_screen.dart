@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:czvirg_fo61b8e4bb982/core/constansts/icon_manager.dart';
 import 'package:czvirg_fo61b8e4bb982/core/resource/style_manager.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ import '../../../core/constansts/color_manger.dart';
 import '../../custom_widgets/primary_button.dart';
 import '../viewmodel/manage_stage_provider.dart';
 
+
+
 class InhaleHoldExhaleScreen extends ConsumerStatefulWidget {
   const InhaleHoldExhaleScreen({super.key});
 
@@ -19,14 +22,111 @@ class InhaleHoldExhaleScreen extends ConsumerStatefulWidget {
       _InhaleHoldExhaleScreenState();
 }
 
-class _InhaleHoldExhaleScreenState
-    extends ConsumerState<InhaleHoldExhaleScreen> {
+class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen> {
+  Timer? _timer;
+
+  // Session Settings
+  final int totalDurationMs = 60000; // 1 Minute default
+  int totalElapsedMs = 0;
+
+  // Breathing Phase Settings (4-7-8 method)
+  String currentPhase = 'INHALE';
+  int currentPhaseDurationMs = 4000; // Starts with 4 seconds Inhale
+  int phaseElapsedMs = 0;
+  int cyclesLeft = 3; // roughly 60 seconds / 19s per cycle
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(manageStageProvider.notifier).state = 'end';
+      _startSession();
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startSession() {
+    ref.read(manageStageProvider.notifier).state = 'active';
+    _timer?.cancel();
+    
+    // Ticking every 50ms for buttery smooth circular and linear animations
+    _timer = Timer.periodic(const Duration(milliseconds: 50), (timer) {
+      final stage = ref.read(manageStageProvider);
+      
+      // If paused or ended, don't progress the time
+      if (stage != 'active') return;
+
+      setState(() {
+        totalElapsedMs += 50;
+        phaseElapsedMs += 50;
+
+        // Check Phase Transition
+        if (phaseElapsedMs >= currentPhaseDurationMs) {
+          _nextPhase();
+        }
+
+        // Check Session End
+        if (totalElapsedMs >= totalDurationMs) {
+          _timer?.cancel();
+          ref.read(manageStageProvider.notifier).state = 'end';
+        }
+      });
+    });
+  }
+
+  void _nextPhase() {
+    phaseElapsedMs = 0;
+    if (currentPhase == 'INHALE') {
+      currentPhase = 'HOLD';
+      currentPhaseDurationMs = 7000; // 7 seconds
+    } else if (currentPhase == 'HOLD') {
+      currentPhase = 'EXHALE';
+      currentPhaseDurationMs = 8000; // 8 seconds
+    } else {
+      currentPhase = 'INHALE';
+      currentPhaseDurationMs = 4000; // 4 seconds
+      if (cyclesLeft > 0) cyclesLeft--;
+    }
+  }
+
+  void _resetSession() {
+    setState(() {
+      totalElapsedMs = 0;
+      phaseElapsedMs = 0;
+      currentPhase = 'INHALE';
+      currentPhaseDurationMs = 4000;
+      cyclesLeft = 3;
+    });
+    _startSession();
+  }
+
+  // --- UI Calculators ---
+
+  String get _formattedTime {
+    int remainingSecs = ((totalDurationMs - totalElapsedMs) / 1000).ceil();
+    int m = remainingSecs ~/ 60;
+    int s = remainingSecs % 60;
+    return '$m : ${s.toString().padLeft(2, '0')}';
+  }
+
+  double get _circularPercent {
+    double rawPercent = phaseElapsedMs / currentPhaseDurationMs;
+    if (currentPhase == 'INHALE') {
+      return rawPercent.clamp(0.0, 1.0); // Fills up
+    } else if (currentPhase == 'HOLD') {
+      return 1.0; // Stays full
+    } else if (currentPhase == 'EXHALE') {
+      return (1.0 - rawPercent).clamp(0.0, 1.0); // Drains out
+    }
+    return 0.0;
+  }
+
+  double get _linearPercent {
+    return (totalElapsedMs / totalDurationMs).clamp(0.0, 1.0);
   }
 
   @override
@@ -50,7 +150,7 @@ class _InhaleHoldExhaleScreenState
                     width: 24.h,
                   ),
                   Text(
-                    '0 : 59',
+                    _formattedTime, // Dynamic Time
                     style: getMedium500Style16(color: ColorManager.primary),
                   ),
                   SvgPicture.asset(
@@ -73,7 +173,7 @@ class _InhaleHoldExhaleScreenState
                   child: CircularPercentIndicator(
                     radius: 100.r,
                     lineWidth: 10.w,
-                    percent: 0.5,
+                    percent: _circularPercent, // Dynamic Circle Progress
                     circularStrokeCap: CircularStrokeCap.round,
                     backgroundColor: ColorManager.primary.withValues(
                       alpha: 0.2,
@@ -83,7 +183,7 @@ class _InhaleHoldExhaleScreenState
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'INHALE',
+                          currentPhase, // Dynamic Phase Text
                           style: getMedium500Style28(
                             color: ColorManager.whiteColor,
                           ),
@@ -95,7 +195,7 @@ class _InhaleHoldExhaleScreenState
                             LinearPercentIndicator(
                               width: 106.w,
                               lineHeight: 6.h,
-                              percent: 0.5,
+                              percent: _linearPercent, // Dynamic Linear Progress
                               barRadius: Radius.circular(10.r),
                               backgroundColor: Colors.white24,
                               progressColor: ColorManager.whiteColor,
@@ -106,7 +206,7 @@ class _InhaleHoldExhaleScreenState
                         ),
                         12.verticalSpace,
                         Text(
-                          '5 cycles left',
+                          '$cyclesLeft cycles left', // Dynamic Cycles
                           style: getRegular400Style12(
                             color: ColorManager.textSecondary,
                           ),
@@ -171,8 +271,8 @@ class _InhaleHoldExhaleScreenState
                       PrimaryButton(
                         title: 'Resume Session',
                         onTap: () {
-                          ref.read(manageStageProvider.notifier).state =
-                              'active';
+                          // Resumes timer naturally
+                          ref.read(manageStageProvider.notifier).state = 'active';
                         },
                       ),
                       16.verticalSpace,
@@ -251,16 +351,15 @@ class _InhaleHoldExhaleScreenState
                                 ),
                               ),
                             ),
-
                             SessionSummary(
                               title: 'Duration',
-                              value: '5:00 min',
+                              value: '1:00 min', // Hardcoded to match 60s
                               iconPath: IconManager.time,
                             ),
                             8.verticalSpace,
                             SessionSummary(
                               title: 'Cycles',
-                              value: '5',
+                              value: '3', // Based on our calculation
                               iconPath: IconManager.cycles,
                             ),
                             8.verticalSpace,
@@ -276,8 +375,7 @@ class _InhaleHoldExhaleScreenState
                       PrimaryButton(
                         title: 'Breathe Again',
                         onTap: () {
-                          ref.read(manageStageProvider.notifier).state =
-                              'active';
+                          _resetSession(); // Resets all timers and restarts
                         },
                       ),
                       16.verticalSpace,
@@ -314,9 +412,11 @@ class SessionSummary extends StatelessWidget {
     required this.value,
     required this.iconPath,
   });
+  
   final String title;
   final String value;
   final String iconPath;
+  
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -327,7 +427,7 @@ class SessionSummary extends StatelessWidget {
           title,
           style: getRegular400Style14(color: ColorManager.textPrimary),
         ),
-        Spacer(),
+        const Spacer(),
         Text(
           value,
           style: getSemiBold600Style16(color: ColorManager.textPrimary),

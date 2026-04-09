@@ -15,6 +15,7 @@ class ColorManager {
   static const Color backgroundDark = Color(0xFF121212);
   static const Color scaffoldLight = Color(0xFFFFFFFF);
   static const Color scaffoldDark = Color(0xFF1E1E1E);
+  static const Color backgroundSurface2 = Color(0xFF1A1A1A);
 
   // ===== Text Colors =====
   static const Color textPrimary = Color(0xFFF0F0F0);
@@ -37,10 +38,12 @@ class ColorManager {
   // ===== Border Colors =====
   static Color borderColor = Color(0xFF7BC8E8).withValues(alpha: 0.33);
   static const Color borderColor1 = Color(0xFF00136B);
+  static const Color borderColor2 = Color(0xFF2A2A2A);
 
   // ===== Container & Fill Colors =====
   static const Color containerColor = Color(0xFFEFEFEF);
-  static const Color containerColor1 = Color(0xFFD9DDE2);
+  static const Color containerColor1 = Color(0xFF7BC8E8);
+  static const Color containerColor2 = Color(0xFFF5F5F5);
   static const Color fillColor = Color(0xFFFEF5F3);
 
   // ===== Feedback Colors =====

@@ -244,6 +244,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Daily Use'**
   String get dailyUse;
+
+  /// No description provided for @inhaleHoldExhaleScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'--------------Inhale Hold Exhale Screen--------------'**
+  String get inhaleHoldExhaleScreen;
+
+  /// No description provided for @inhale.
+  ///
+  /// In en, this message translates to:
+  /// **'INHALE'**
+  String get inhale;
+
+  /// No description provided for @hold.
+  ///
+  /// In en, this message translates to:
+  /// **'HOLD'**
+  String get hold;
+
+  /// No description provided for @exhale.
+  ///
+  /// In en, this message translates to:
+  /// **'EXHALE'**
+  String get exhale;
+
+  /// No description provided for @fiveCyclesLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'5 cycles left'**
+  String get fiveCyclesLeft;
+
+  /// No description provided for @fourCyclesLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'4 cycles left'**
+  String get fourCyclesLeft;
+
+  /// No description provided for @paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get paused;
+
+  /// No description provided for @resumeSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume Session'**
+  String get resumeSession;
+
+  /// No description provided for @quitSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit Session'**
+  String get quitSession;
+
+  /// No description provided for @sessionComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Session Complete!'**
+  String get sessionComplete;
+
+  /// No description provided for @wellDoneTakeAMomentToNoticeHowYouFeel.
+  ///
+  /// In en, this message translates to:
+  /// **'Well done. Take a moment to notice how you feel.'**
+  String get wellDoneTakeAMomentToNoticeHowYouFeel;
+
+  /// No description provided for @duration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get duration;
+
+  /// No description provided for @cycles.
+  ///
+  /// In en, this message translates to:
+  /// **'Cycles'**
+  String get cycles;
+
+  /// No description provided for @mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Mode'**
+  String get mode;
+
+  /// No description provided for @breatheAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Breathe Again'**
+  String get breatheAgain;
+
+  /// No description provided for @returnHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Return Home'**
+  String get returnHome;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
