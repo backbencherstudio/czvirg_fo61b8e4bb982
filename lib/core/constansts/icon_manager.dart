@@ -20,4 +20,7 @@ class IconManager {
   static String time = '$baseUrl/time.svg';
   static String cycles = '$baseUrl/cycles.svg';
   static String mode = '$baseUrl/mode.svg';
+  static String flashOutline = '$baseUrl/flash_outline.svg';
+  static String heartRate = '$baseUrl/heart_rate.svg';
+  static String roundAir = '$baseUrl/round_air.svg';
 }

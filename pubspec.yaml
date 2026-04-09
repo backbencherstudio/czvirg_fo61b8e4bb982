@@ -49,6 +49,8 @@ dependencies:
   video_player:
   flutter_svg: ^2.0.10
   percent_indicator: ^4.2.5
+  google_fonts: ^8.0.2
+  fl_chart: ^1.2.0
 
 dev_dependencies:
   flutter_test:

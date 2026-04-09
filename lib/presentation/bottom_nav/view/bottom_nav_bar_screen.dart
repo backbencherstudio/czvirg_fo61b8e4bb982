@@ -7,6 +7,7 @@ import '../../../core/constansts/color_manger.dart';
 import '../../../core/constansts/icon_manager.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../home/view/home_screen.dart';
+import '../../progress/view/progress_screen.dart';
 import '../viewmodel/bottom_nav_provider.dart';
 
 class BottomNavBarScreen extends ConsumerWidget {
@@ -16,7 +17,7 @@ class BottomNavBarScreen extends ConsumerWidget {
   static const List<Widget> _screens = [
     HomeScreen(),
     Scaffold(body: Center(child: Text("Exercises"))),
-    Scaffold(body: Center(child: Text("Progress"))),
+    ProgressScreen(),
     Scaffold(body: Center(child: Text("Benefits"))),
     Scaffold(body: Center(child: Text("Settings"))),
   ];
