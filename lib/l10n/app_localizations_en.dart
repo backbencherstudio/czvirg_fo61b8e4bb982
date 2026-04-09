@@ -82,4 +82,52 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dailyUse => 'Daily Use';
+
+  @override
+  String get inhaleHoldExhaleScreen => '--------------Inhale Hold Exhale Screen--------------';
+
+  @override
+  String get inhale => 'INHALE';
+
+  @override
+  String get hold => 'HOLD';
+
+  @override
+  String get exhale => 'EXHALE';
+
+  @override
+  String get fiveCyclesLeft => '5 cycles left';
+
+  @override
+  String get fourCyclesLeft => '4 cycles left';
+
+  @override
+  String get paused => 'Paused';
+
+  @override
+  String get resumeSession => 'Resume Session';
+
+  @override
+  String get quitSession => 'Quit Session';
+
+  @override
+  String get sessionComplete => 'Session Complete!';
+
+  @override
+  String get wellDoneTakeAMomentToNoticeHowYouFeel => 'Well done. Take a moment to notice how you feel.';
+
+  @override
+  String get duration => 'Duration';
+
+  @override
+  String get cycles => 'Cycles';
+
+  @override
+  String get mode => 'Mode';
+
+  @override
+  String get breatheAgain => 'Breathe Again';
+
+  @override
+  String get returnHome => 'Return Home';
 }

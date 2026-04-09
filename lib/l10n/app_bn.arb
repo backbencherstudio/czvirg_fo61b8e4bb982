@@ -25,5 +25,22 @@
     "setYourOwnBreathingPattern": "আপনার নিজস্ব শ্বাস-প্রশ্বাসের প্যাটার্ন সেট করুন",
     "beginner": "নতুনদের জন্য",
     "balance": "ভারসাম্য",
-    "dailyUse": "দৈনন্দিন ব্যবহার"
+    "dailyUse": "দৈনন্দিন ব্যবহার",
+
+    "inhaleHoldExhaleScreen": "--------------Inhale Hold Exhale Screen--------------",
+    "inhale": "নিঃশ্বাস নিন",
+    "hold": "ধরে রাখুন",
+    "exhale": "নিঃশ্বাস ছাড়ুন",
+    "fiveCyclesLeft": "৫টি সাইকেল বাকি",
+    "fourCyclesLeft": "৪টি সাইকেল বাকি",
+    "paused": "বিরতি",
+    "resumeSession": "সেশন পুনরায় শুরু করুন",
+    "quitSession": "সেশন থেকে বেরিয়ে আসুন",
+    "sessionComplete": "সেশন সম্পন্ন!",
+    "wellDoneTakeAMomentToNoticeHowYouFeel": "খুব ভালো হয়েছে। কিছুক্ষণ বিরতি নিন এবং আপনার অনুভূতি লক্ষ্য করুন।",
+    "duration": "সময়কাল",
+    "cycles": "সাইকেল",
+    "mode": "মোড",
+    "breatheAgain": "আবার শ্বাস নিন",
+    "returnHome": "হোমে ফিরে যান"
 }

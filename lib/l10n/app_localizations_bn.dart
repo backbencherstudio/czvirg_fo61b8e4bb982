@@ -82,4 +82,52 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get dailyUse => 'দৈনন্দিন ব্যবহার';
+
+  @override
+  String get inhaleHoldExhaleScreen => '--------------Inhale Hold Exhale Screen--------------';
+
+  @override
+  String get inhale => 'নিঃশ্বাস নিন';
+
+  @override
+  String get hold => 'ধরে রাখুন';
+
+  @override
+  String get exhale => 'নিঃশ্বাস ছাড়ুন';
+
+  @override
+  String get fiveCyclesLeft => '৫টি সাইকেল বাকি';
+
+  @override
+  String get fourCyclesLeft => '৪টি সাইকেল বাকি';
+
+  @override
+  String get paused => 'বিরতি';
+
+  @override
+  String get resumeSession => 'সেশন পুনরায় শুরু করুন';
+
+  @override
+  String get quitSession => 'সেশন থেকে বেরিয়ে আসুন';
+
+  @override
+  String get sessionComplete => 'সেশন সম্পন্ন!';
+
+  @override
+  String get wellDoneTakeAMomentToNoticeHowYouFeel => 'খুব ভালো হয়েছে। কিছুক্ষণ বিরতি নিন এবং আপনার অনুভূতি লক্ষ্য করুন।';
+
+  @override
+  String get duration => 'সময়কাল';
+
+  @override
+  String get cycles => 'সাইকেল';
+
+  @override
+  String get mode => 'মোড';
+
+  @override
+  String get breatheAgain => 'আবার শ্বাস নিন';
+
+  @override
+  String get returnHome => 'হোমে ফিরে যান';
 }
