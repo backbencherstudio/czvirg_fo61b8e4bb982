@@ -15,6 +15,7 @@ class IconManager {
 
   static String speaker = '$baseUrl/speaker.svg';
   static String biPhone = '$baseUrl/bi_phone.svg';
+  static String mic = '$baseUrl/famicons_mic.svg';
   static String iconsStop = '$baseUrl/icons_stop.svg';
   static String iconsCelebrate = '$baseUrl/celebrate.svg';
   static String time = '$baseUrl/time.svg';
