@@ -29,7 +29,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Your Progress',
+                  'Benefits',
                   style: GoogleFonts.armata(
                     fontSize: 30,
                     fontWeight: FontWeight.w700,
