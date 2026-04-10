@@ -7,9 +7,15 @@ import '../../../../core/constansts/icon_manager.dart';
 import '../../../../core/resource/style_manager.dart';
 
 class BenefitCard extends StatelessWidget {
-  const BenefitCard({super.key, required this.title, required this.icon});
+  const BenefitCard({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.shareOnTap,
+  });
   final String title;
   final String icon;
+  final VoidCallback shareOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,14 @@ class BenefitCard extends StatelessWidget {
             style: getSemiBold600Style16(color: ColorManager.textPrimary),
           ),
           const Spacer(),
-          SvgPicture.asset(IconManager.fluentShare, height: 20.h, width: 20.w),
+          GestureDetector(
+            onTap: shareOnTap,
+            child: SvgPicture.asset(
+              IconManager.fluentShare,
+              height: 20.h,
+              width: 20.w,
+            ),
+          ),
         ],
       ),
     );

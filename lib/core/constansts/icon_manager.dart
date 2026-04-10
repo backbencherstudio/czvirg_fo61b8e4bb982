@@ -29,4 +29,9 @@ class IconManager {
   static String playIcon = '$baseUrl/play_icon.svg';
   static String fluentShare = '$baseUrl/fluent_share.svg';
   static String epDocument = '$baseUrl/ep_document.svg';
+
+  static String messageIcon = '$baseUrl/uiw_message.svg';
+  static String emailIcon = '$baseUrl/clarity_email-line.svg';
+  static String copyLinkIcon = '$baseUrl/icon-park_copy-link.svg';
+  static String moreIcon = '$baseUrl/fluent_more-circle.svg';
 }
