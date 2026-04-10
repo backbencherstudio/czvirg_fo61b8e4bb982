@@ -23,4 +23,9 @@ class IconManager {
   static String flashOutline = '$baseUrl/flash_outline.svg';
   static String heartRate = '$baseUrl/heart_rate.svg';
   static String roundAir = '$baseUrl/round_air.svg';
+
+  static String books = '$baseUrl/books.svg';
+  static String playIcon = '$baseUrl/play_icon.svg';
+  static String fluentShare = '$baseUrl/fluent_share.svg';
+  static String epDocument = '$baseUrl/ep_document.svg';
 }

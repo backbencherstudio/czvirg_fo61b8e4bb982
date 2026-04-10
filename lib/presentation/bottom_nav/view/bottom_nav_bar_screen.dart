@@ -6,8 +6,10 @@ import 'package:flutter_svg/svg.dart';
 import '../../../core/constansts/color_manger.dart';
 import '../../../core/constansts/icon_manager.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../benefits/view/benefits_screen.dart';
 import '../../home/view/home_screen.dart';
 import '../../progress/view/progress_screen.dart';
+import '../../settings/view/settings_screen.dart';
 import '../viewmodel/bottom_nav_provider.dart';
 
 class BottomNavBarScreen extends ConsumerWidget {
@@ -18,8 +20,8 @@ class BottomNavBarScreen extends ConsumerWidget {
     HomeScreen(),
     Scaffold(body: Center(child: Text("Exercises"))),
     ProgressScreen(),
-    Scaffold(body: Center(child: Text("Benefits"))),
-    Scaffold(body: Center(child: Text("Settings"))),
+    BenefitsScreen(),
+    SettingsScreen(),
   ];
 
   @override
