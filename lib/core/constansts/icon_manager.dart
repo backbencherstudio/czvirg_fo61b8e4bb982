@@ -6,7 +6,6 @@ class IconManager {
   static String benefitsSvg = '$baseUrl/benefits.svg';
   static String settingsSvg = '$baseUrl/settings.svg';
 
-
   static String educationSvg = '$baseUrl/education.svg';
   static String tdesignMoon = '$baseUrl/tdesign_moon.svg';
   static String icRoundAir = '$baseUrl/ic_round_air.svg';
@@ -34,4 +33,11 @@ class IconManager {
   static String emailIcon = '$baseUrl/clarity_email-line.svg';
   static String copyLinkIcon = '$baseUrl/icon-park_copy-link.svg';
   static String moreIcon = '$baseUrl/fluent_more-circle.svg';
+
+  static String unfoldMore = '$baseUrl/unfold-more.svg';
+
+  static String arrowUp = '$baseUrl/arrow-up-right-01.svg';
+  static String arrowRight = '$baseUrl/arrow-right-02.svg';
+  static String arrowDown = '$baseUrl/arrow-down-right-01.svg';
+  static String repeat = '$baseUrl/repeat.svg';
 }
