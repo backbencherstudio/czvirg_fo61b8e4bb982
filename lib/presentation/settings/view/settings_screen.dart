@@ -35,85 +35,101 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 ),
               ),
               20.verticalSpace,
-              Text(
-                'SESSION PREFERENCES',
-                style: getMedium500Style14(color: ColorManager.textSecondary),
-              ),
-              16.verticalSpace,
-              ListView.separated(
-                itemCount: settingsList.length,
-                shrinkWrap: true,
-                separatorBuilder: (context, index) => 12.verticalSpace,
-                itemBuilder: (context, index) {
-                  final setting = settingsList[index];
-                  return SettingItem(
-                    title: setting.title,
-                    icon: setting.icon,
-                    isSelected: setting.isSelected,
-                    onChanged: (value) {
-                      ref.read(settingsProvider.notifier).toggle(index, value);
-                    },
-                  );
-                },
-              ),
-              24.verticalSpace,
-              Text(
-                'ABOUT',
-                style: getMedium500Style14(color: ColorManager.textSecondary),
-              ),
-              16.verticalSpace,
-
-              Container(
-                padding: EdgeInsets.all(12.r),
-                decoration: BoxDecoration(
-                  color: ColorManager.backgroundSurface2,
-                  borderRadius: BorderRadius.circular(12.r),
-                  border: Border.all(color: ColorManager.borderColor2),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Version',
-                          style: getBold700Style16(
-                            color: ColorManager.textPrimary,
-                          ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'SESSION PREFERENCES',
+                        style: getMedium500Style14(
+                          color: ColorManager.textSecondary,
                         ),
-                        Text(
-                          '1.0.0',
-                          style: getMedium500Style14(
-                            color: ColorManager.textSecondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      child: Divider(
-                        color: ColorManager.borderColor2,
-                        thickness: 1.r,
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Clara Vida',
-                          style: getBold700Style16(
-                            color: ColorManager.textPrimary,
-                          ),
+                      16.verticalSpace,
+                      ListView.separated(
+                        itemCount: settingsList.length,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) => 12.verticalSpace,
+                        itemBuilder: (context, index) {
+                          final setting = settingsList[index];
+                          return SettingItem(
+                            title: setting.title,
+                            icon: setting.icon,
+                            isSelected: setting.isSelected,
+                            onChanged: (value) {
+                              ref
+                                  .read(settingsProvider.notifier)
+                                  .toggle(index, value);
+                            },
+                          );
+                        },
+                      ),
+                      24.verticalSpace,
+                      Text(
+                        'ABOUT',
+                        style: getMedium500Style14(
+                          color: ColorManager.textSecondary,
                         ),
-                        Text(
-                          'Breathe-Be-Become',
-                          style: getMedium500Style14(
-                            color: ColorManager.textSecondary,
-                          ),
+                      ),
+                      16.verticalSpace,
+
+                      Container(
+                        padding: EdgeInsets.all(12.r),
+                        decoration: BoxDecoration(
+                          color: ColorManager.backgroundSurface2,
+                          borderRadius: BorderRadius.circular(12.r),
+                          border: Border.all(color: ColorManager.borderColor2),
                         ),
-                      ],
-                    ),
-                  ],
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Version',
+                                  style: getBold700Style16(
+                                    color: ColorManager.textPrimary,
+                                  ),
+                                ),
+                                Text(
+                                  '1.0.0',
+                                  style: getMedium500Style14(
+                                    color: ColorManager.textSecondary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 12.w),
+                              child: Divider(
+                                color: ColorManager.borderColor2,
+                                thickness: 1.r,
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Clara Vida',
+                                  style: getBold700Style16(
+                                    color: ColorManager.textPrimary,
+                                  ),
+                                ),
+                                Text(
+                                  'Breathe-Be-Become',
+                                  style: getMedium500Style14(
+                                    color: ColorManager.textSecondary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      20.verticalSpace,
+                    ],
+                  ),
                 ),
               ),
             ],
