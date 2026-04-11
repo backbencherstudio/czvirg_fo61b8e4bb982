@@ -66,210 +66,219 @@ class _ExercisesScreenState extends ConsumerState<ExercisesScreen> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Exercises',
-                  style: GoogleFonts.armata(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    color: ColorManager.titleText,
-                  ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Exercises',
+                style: GoogleFonts.armata(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  color: ColorManager.titleText,
                 ),
-                20.verticalSpace,
+              ),
+              20.verticalSpace,
 
-                // --- VIDEO PLAYLIST EMBED ---
-                GestureDetector(
-                  onTap: () {
-                    launchUrl(
-                      Uri.parse(
-                        'https://www.youtube.com/watch?v=acUZdGd_3Dg&list=PL5111000000000000&index=1',
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: 190.h,
-                    width: double.infinity,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1A1A1A),
-                      borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(color: Colors.white12, width: 1),
-                    ),
-                    child: AbsorbPointer(
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: SizedBox(
-                          width: 1600,
-                          height: 900,
-                          child: YoutubePlayer(
-                            controller: _youtubeController,
-                            showVideoProgressIndicator: true,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // --- VIDEO PLAYLIST EMBED ---
+                      GestureDetector(
+                        onTap: () {
+                          launchUrl(
+                            Uri.parse(
+                              'https://www.youtube.com/watch?v=acUZdGd_3Dg&list=PL5111000000000000&index=1',
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: 190.h,
+                          width: double.infinity,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF1A1A1A),
+                            borderRadius: BorderRadius.circular(12.r),
+                            border: Border.all(color: Colors.white12, width: 1),
+                          ),
+                          child: AbsorbPointer(
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: SizedBox(
+                                width: 1600,
+                                height: 900,
+                                child: YoutubePlayer(
+                                  controller: _youtubeController,
+                                  showVideoProgressIndicator: true,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
 
-                32.verticalSpace,
-                Center(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Selected Exercise',
-                        style: GoogleFonts.merriweather(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                        ),
-                      ),
-                      8.verticalSpace,
-
-                      // --- EXERCISE DROPDOWN TRIGGER ---
-                      GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            barrierColor: Colors.black54,
-                            builder: (context) =>
-                                const ExerciseSelectorDialog(),
-                          );
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
+                      32.verticalSpace,
+                      Center(
+                        child: Column(
                           children: [
                             Text(
-                              activeExercise.name,
-                              style: GoogleFonts.inter(
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4AC2B4),
+                              'Selected Exercise',
+                              style: GoogleFonts.merriweather(
+                                fontSize: 16.sp,
+                                color: Colors.white,
                               ),
                             ),
-                            8.horizontalSpace,
-                            SvgPicture.asset(IconManager.unfoldMore),
+                            8.verticalSpace,
+
+                            // --- EXERCISE DROPDOWN TRIGGER ---
+                            GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  barrierColor: Colors.black54,
+                                  builder: (context) =>
+                                      const ExerciseSelectorDialog(),
+                                );
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    activeExercise.name,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: const Color(0xFF4AC2B4),
+                                    ),
+                                  ),
+                                  8.horizontalSpace,
+                                  SvgPicture.asset(IconManager.unfoldMore),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                32.verticalSpace,
+                      32.verticalSpace,
 
-                // --- DYNAMIC STEPS LIST ---
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: activeExercise.steps.length,
-                  separatorBuilder: (context, index) => 12.verticalSpace,
-                  itemBuilder: (context, index) {
-                    final step = activeExercise.steps[index];
-                    return ExerciseStepCard(
-                      title: step.title,
-                      durationSec: step.durationSec,
-                      icon: step.icon,
-                    );
-                  },
-                ),
+                      // --- DYNAMIC STEPS LIST ---
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: activeExercise.steps.length,
+                        separatorBuilder: (context, index) => 12.verticalSpace,
+                        itemBuilder: (context, index) {
+                          final step = activeExercise.steps[index];
+                          return ExerciseStepCard(
+                            title: step.title,
+                            durationSec: step.durationSec,
+                            icon: step.icon,
+                          );
+                        },
+                      ),
 
-                16.verticalSpace,
+                      16.verticalSpace,
 
-                // --- REPEAT SLIDER WIDGET ---
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 16.h,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF131313),
-                    borderRadius: BorderRadius.circular(8.r),
-                    border: Border.all(color: Colors.transparent),
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                IconManager.repeat,
-                                height: 20.h,
-                                width: 20.w,
-                              ),
-                              8.horizontalSpace,
-                              Text(
-                                'Repeat Exercise',
-                                style: getMedium500Style16(
-                                  color: ColorManager.textPrimary,
+                      // --- REPEAT SLIDER WIDGET ---
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 16.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF131313),
+                          borderRadius: BorderRadius.circular(8.r),
+                          border: Border.all(color: Colors.transparent),
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      IconManager.repeat,
+                                      height: 20.h,
+                                      width: 20.w,
+                                    ),
+                                    8.horizontalSpace,
+                                    Text(
+                                      'Repeat Exercise',
+                                      style: getMedium500Style16(
+                                        color: ColorManager.textPrimary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  '${activeExercise.repeatCount} Times',
+                                  style: getSemiBold600Style16(
+                                    color: ColorManager.primary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            12.verticalSpace,
+                            SliderTheme(
+                              data: SliderThemeData(
+                                activeTrackColor: Colors.white,
+                                inactiveTrackColor: Colors.white24,
+                                thumbColor: Colors.white,
+                                trackHeight: 6.h, // Thinner line
+                                thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 6.r,
+                                ),
+                                overlayShape: RoundSliderOverlayShape(
+                                  overlayRadius: 14.r,
                                 ),
                               ),
-                            ],
-                          ),
-                          Text(
-                            '${activeExercise.repeatCount} Times',
-                            style: getSemiBold600Style16(
-                              color: ColorManager.primary,
+                              child: Slider(
+                                value: activeExercise.repeatCount.toDouble(),
+                                min: 1,
+                                max: 20,
+                                onChanged: (val) {
+                                  ref
+                                      .read(exerciseProvider.notifier)
+                                      .updateRepeatCount(val.toInt());
+                                },
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      12.verticalSpace,
-                      SliderTheme(
-                        data: SliderThemeData(
-                          activeTrackColor: Colors.white,
-                          inactiveTrackColor: Colors.white24,
-                          thumbColor: Colors.white,
-                          trackHeight: 6.h, // Thinner line
-                          thumbShape: RoundSliderThumbShape(
-                            enabledThumbRadius: 6.r,
-                          ),
-                          overlayShape: RoundSliderOverlayShape(
-                            overlayRadius: 14.r,
-                          ),
-                        ),
-                        child: Slider(
-                          value: activeExercise.repeatCount.toDouble(),
-                          min: 1,
-                          max: 20,
-                          onChanged: (val) {
-                            ref
-                                .read(exerciseProvider.notifier)
-                                .updateRepeatCount(val.toInt());
-                          },
+                          ],
                         ),
                       ),
+
+                      32.verticalSpace,
+
+                      // --- TOTAL DURATION ---
+                      Center(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Exercise Length',
+                              style: getSemiBold600Style20(
+                                color: ColorManager.whiteColor,
+                              ),
+                            ),
+                            8.verticalSpace,
+                            Text(
+                              _formatDuration(
+                                activeExercise.totalDurationSeconds,
+                              ),
+                              style: getRegular400Style18(
+                                color: ColorManager.primary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      40.verticalSpace,
                     ],
                   ),
                 ),
-
-                32.verticalSpace,
-
-                // --- TOTAL DURATION ---
-                Center(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Exercise Length',
-                        style: getSemiBold600Style20(
-                          color: ColorManager.whiteColor,
-                        ),
-                      ),
-                      8.verticalSpace,
-                      Text(
-                        _formatDuration(activeExercise.totalDurationSeconds),
-                        style: getRegular400Style18(
-                          color: ColorManager.primary,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                40.verticalSpace,
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

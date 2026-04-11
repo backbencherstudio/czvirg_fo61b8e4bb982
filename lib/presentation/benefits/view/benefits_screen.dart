@@ -53,154 +53,168 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Benefits',
-                  style: GoogleFonts.armata(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    color: ColorManager.titleText,
-                  ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Benefits',
+                style: GoogleFonts.armata(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  color: ColorManager.titleText,
                 ),
-                20.verticalSpace,
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 14.h,
-                  ),
-                  decoration: BoxDecoration(
-                    color: ColorManager.primary.withValues(alpha: 0.13),
-                    borderRadius: BorderRadius.circular(8.r),
-                    border: Border.all(color: ColorManager.primary),
-                  ),
-                  child: Row(
+              ),
+              20.verticalSpace,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 14.h,
+                        ),
                         decoration: BoxDecoration(
                           color: ColorManager.primary.withValues(alpha: 0.13),
                           borderRadius: BorderRadius.circular(8.r),
+                          border: Border.all(color: ColorManager.primary),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.all(10.r),
-                          child: SvgPicture.asset(
-                            IconManager.books,
-                            height: 22.h,
-                            width: 22.w,
-                          ),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: ColorManager.primary.withValues(
+                                  alpha: 0.13,
+                                ),
+                                borderRadius: BorderRadius.circular(8.r),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(10.r),
+                                child: SvgPicture.asset(
+                                  IconManager.books,
+                                  height: 22.h,
+                                  width: 22.w,
+                                ),
+                              ),
+                            ),
+                            12.horizontalSpace,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Helpful Resources',
+                                  style: getSemiBold600Style16(
+                                    color: ColorManager.textPrimary,
+                                  ),
+                                ),
+                                4.verticalSpace,
+                                Text(
+                                  'Science-backed reasons to\nbreathe with intention',
+                                  style: getRegular400Style12(
+                                    color: ColorManager.textSecondary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: ColorManager.primary,
+                              size: 24.r,
+                            ),
+                          ],
                         ),
                       ),
-                      12.horizontalSpace,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Helpful Resources',
-                            style: getSemiBold600Style16(
-                              color: ColorManager.textPrimary,
-                            ),
-                          ),
-                          4.verticalSpace,
-                          Text(
-                            'Science-backed reasons to\nbreathe with intention',
-                            style: getRegular400Style12(
-                              color: ColorManager.textSecondary,
-                            ),
-                          ),
-                        ],
+
+                      24.verticalSpace,
+
+                      Text(
+                        'Video Resources',
+                        style: getSemiBold600Style16(
+                          color: ColorManager.textPrimary,
+                        ),
                       ),
-                      const Spacer(),
-                      Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: ColorManager.primary,
-                        size: 24.r,
-                      ),
-                    ],
-                  ),
-                ),
 
-                24.verticalSpace,
+                      16.verticalSpace,
 
-                Text(
-                  'Video Resources',
-                  style: getSemiBold600Style16(color: ColorManager.textPrimary),
-                ),
+                      // --- 2. Use the length of your list ---
+                      ListView.separated(
+                        itemCount: videoResources.length,
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        separatorBuilder: (context, index) {
+                          return 12.verticalSpace;
+                        },
+                        itemBuilder: (context, index) {
+                          // Get the specific model for this row
+                          final videoData = videoResources[index];
 
-                16.verticalSpace,
-
-                // --- 2. Use the length of your list ---
-                ListView.separated(
-                  itemCount: videoResources.length,
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  separatorBuilder: (context, index) {
-                    return 12.verticalSpace;
-                  },
-                  itemBuilder: (context, index) {
-                    // Get the specific model for this row
-                    final videoData = videoResources[index];
-
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                VideoPlayerScreen(videoData: videoData),
-                          ),
-                        );
-                      },
-                      child: BenefitCard(
-                        title: videoData.title,
-                        icon: IconManager.playIcon,
-                        shareOnTap: () async {
-                          await ShareUtils.shareContent(
-                            title: videoData.title,
-                            url: videoData.youtubeUrl,
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      VideoPlayerScreen(videoData: videoData),
+                                ),
+                              );
+                            },
+                            child: BenefitCard(
+                              title: videoData.title,
+                              icon: IconManager.playIcon,
+                              shareOnTap: () async {
+                                await ShareUtils.shareContent(
+                                  title: videoData.title,
+                                  url: videoData.youtubeUrl,
+                                );
+                              },
+                            ),
                           );
                         },
                       ),
-                    );
-                  },
-                ),
 
-                24.verticalSpace,
+                      24.verticalSpace,
 
-                Text(
-                  'Scientific Articles',
-                  style: getSemiBold600Style16(color: ColorManager.textPrimary),
-                ),
+                      Text(
+                        'Scientific Articles',
+                        style: getSemiBold600Style16(
+                          color: ColorManager.textPrimary,
+                        ),
+                      ),
 
-                16.verticalSpace,
-                ListView.separated(
-                  itemCount: 3,
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  separatorBuilder: (context, index) {
-                    return 12.verticalSpace;
-                  },
-                  itemBuilder: (context, index) {
-                    return BenefitCard(
-                      title: 'Box Breathing with Mark Divine',
-                      icon: IconManager.epDocument,
-                      shareOnTap: () async {
-                        await ShareUtils.shareContent(
-                          title: "Box Breathing with Mark Divine",
-                          url:
-                              "https://youtube.com/shorts/6-mnpdlb0N8?si=uEeW6UNLKTWGtFIp",
-                        );
-                      },
-                    );
-                  },
+                      16.verticalSpace,
+                      ListView.separated(
+                        itemCount: 3,
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        separatorBuilder: (context, index) {
+                          return 12.verticalSpace;
+                        },
+                        itemBuilder: (context, index) {
+                          return BenefitCard(
+                            title: 'Box Breathing with Mark Divine',
+                            icon: IconManager.epDocument,
+                            shareOnTap: () async {
+                              await ShareUtils.shareContent(
+                                title: "Box Breathing with Mark Divine",
+                                url:
+                                    "https://youtube.com/shorts/6-mnpdlb0N8?si=uEeW6UNLKTWGtFIp",
+                              );
+                            },
+                          );
+                        },
+                      ),
+                      24.verticalSpace,
+                      PrimaryButton(title: 'Start Breathing', onTap: () {}),
+                    ],
+                  ),
                 ),
-                24.verticalSpace,
-                PrimaryButton(title: 'Start Breathing', onTap: () {}),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
