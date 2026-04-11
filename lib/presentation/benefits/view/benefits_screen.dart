@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:share_plus/share_plus.dart';
-
 import '../../../core/constansts/color_manger.dart';
 import '../../../core/resource/style_manager.dart';
 import '../../../core/utils/share_utils.dart';
+import '../../video_player/view/video_player_screen.dart';
+import '../model/benefit_model.dart';
 import 'widgets/benefit_card.dart';
 
 class BenefitsScreen extends StatefulWidget {
@@ -19,6 +19,33 @@ class BenefitsScreen extends StatefulWidget {
 }
 
 class _BenefitsScreenState extends State<BenefitsScreen> {
+  final List<VideoResourceModel> videoResources = [
+    VideoResourceModel(
+      title: 'Box Breathing with Mark Divine',
+      subtitle: 'Life Optimization Series',
+      youtubeUrl: 'https://youtu.be/j-1n3KJR1I8?si=JA4AM-ubeDMMcGcB',
+      videoId: 'j-1n3KJR1I8',
+      timesWatched: 3,
+      lastWatchedDate: 'March 28, 2026',
+    ),
+    VideoResourceModel(
+      title: 'Navy SEAL Breathing Technique',
+      subtitle: 'Breathing Techniques',
+      youtubeUrl: 'https://youtube.com/shorts/FpQMfI56Cj4?si=uOtfdd8NxPqH4sZB',
+      videoId: 'FpQMfI56Cj4',
+      timesWatched: 1,
+      lastWatchedDate: 'April 2, 2026',
+    ),
+    VideoResourceModel(
+      title: 'How to Box Breathing for Calm',
+      subtitle: 'Mindfulness Basics',
+      youtubeUrl: 'https://youtu.be/-7-CAFhJn78?si=u0XIZW_6Nc5zbEr8',
+      videoId: '-7-CAFhJn78',
+      timesWatched: 0,
+      lastWatchedDate: 'Not watched yet',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,8 +129,10 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                 ),
 
                 16.verticalSpace,
+
+                // --- 2. Use the length of your list ---
                 ListView.separated(
-                  itemCount: 3,
+                  itemCount: videoResources.length,
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -111,16 +140,29 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                     return 12.verticalSpace;
                   },
                   itemBuilder: (context, index) {
-                    return BenefitCard(
-                      title: 'Box Breathing with Mark Divine',
-                      icon: IconManager.playIcon,
-                      shareOnTap: () async {
-                        await ShareUtils.shareContent(
-                          title: "Box Breathing with Mark Divine",
-                          url:
-                              "https://youtube.com/shorts/sxmTTS4qros?si=vRp5zfLqk4I2RZvJ",
+                    // Get the specific model for this row
+                    final videoData = videoResources[index];
+
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                VideoPlayerScreen(videoData: videoData),
+                          ),
                         );
                       },
+                      child: BenefitCard(
+                        title: videoData.title,
+                        icon: IconManager.playIcon,
+                        shareOnTap: () async {
+                          await ShareUtils.shareContent(
+                            title: videoData.title,
+                            url: videoData.youtubeUrl,
+                          );
+                        },
+                      ),
                     );
                   },
                 ),
@@ -165,152 +207,3 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
     );
   }
 }
-
-
-    // showModalBottomSheet(
-    //                       backgroundColor: Colors.transparent,
-    //                       context: context,
-    //                       builder: (context) {
-    //                         return Container(
-    //                           padding: EdgeInsets.symmetric(horizontal: 20.w),
-    //                           decoration: BoxDecoration(
-    //                             color: ColorManager.blackColor,
-    //                             border: Border(
-    //                               top: BorderSide(
-    //                                 color: ColorManager.borderColor3,
-    //                               ),
-    //                             ),
-    //                             borderRadius: BorderRadius.only(
-    //                               topLeft: Radius.circular(24.r),
-    //                               topRight: Radius.circular(24.r),
-    //                             ),
-    //                           ),
-    //                           child: Column(
-    //                             crossAxisAlignment: CrossAxisAlignment.start,
-    //                             mainAxisSize: MainAxisSize.min,
-    //                             children: [
-    //                               20.verticalSpace,
-    //                               Center(
-    //                                 child: Container(
-    //                                   height: 4.h,
-    //                                   width: 74.w,
-    //                                   decoration: BoxDecoration(
-    //                                     color: ColorManager.borderColor,
-    //                                     borderRadius: BorderRadius.circular(
-    //                                       2.r,
-    //                                     ),
-    //                                   ),
-    //                                 ),
-    //                               ),
-    //                               24.verticalSpace,
-    //                               Text(
-    //                                 'Share',
-    //                                 style: getBold700Style16(
-    //                                   color: ColorManager.textPrimary,
-    //                                 ),
-    //                               ),
-    //                               4.verticalSpace,
-    //                               Text(
-    //                                 '1st Video - Life Optimization Series',
-    //                                 style: getRegular400Style14(
-    //                                   color: ColorManager.textSecondary,
-    //                                 ),
-    //                               ),
-    //                               24.verticalSpace,
-    //                               Row(
-    //                                 mainAxisAlignment:
-    //                                     MainAxisAlignment.spaceBetween,
-    //                                 children: [
-    //                                   Expanded(
-    //                                     child: ShareItem(
-    //                                       title: 'Messages',
-    //                                       icon: IconManager.messageIcon,
-    //                                       onTap: () {},
-    //                                     ),
-    //                                   ),
-    //                                   8.horizontalSpace,
-    //                                   Expanded(
-    //                                     child: ShareItem(
-    //                                       title: 'Email',
-    //                                       icon: IconManager.emailIcon,
-    //                                       onTap: () {},
-    //                                     ),
-    //                                   ),
-    //                                   8.horizontalSpace,
-    //                                   Expanded(
-    //                                     child: ShareItem(
-    //                                       title: 'Copy Link',
-    //                                       icon: IconManager.copyLinkIcon,
-    //                                       onTap: () {},
-    //                                     ),
-    //                                   ),
-    //                                   8.horizontalSpace,
-    //                                   Expanded(
-    //                                     child: ShareItem(
-    //                                       title: 'More',
-    //                                       icon: IconManager.moreIcon,
-    //                                       onTap: () {},
-    //                                     ),
-    //                                   ),
-    //                                 ],
-    //                               ),
-    //                               24.verticalSpace,
-    //                               PrimaryButton(
-    //                                 title: 'Cancel',
-    //                                 containerColor: ColorManager
-    //                                     .backgroundSurface3
-    //                                     .withValues(alpha: 0.15),
-    //                                 border: Border.all(
-    //                                   color: ColorManager.backgroundSurface3
-    //                                       .withValues(alpha: 0.24),
-    //                                 ),
-    //                                 textStyle: getSemiBold600Style16(
-    //                                   color: ColorManager.backgroundSurface3,
-    //                                 ),
-    //                                 onTap: () {
-    //                                   Navigator.pop(context);
-    //                                 },
-    //                               ),
-    //                               40.verticalSpace,
-    //                             ],
-    //                           ),
-    //                         );
-    //                       },
-    //                     );
-
-// class ShareItem extends StatelessWidget {
-//   const ShareItem({
-//     super.key,
-//     required this.icon,
-//     required this.title,
-//     required this.onTap,
-//   });
-//   final String icon;
-//   final String title;
-//   final VoidCallback onTap;
-//   @override
-//   Widget build(BuildContext context) {
-//     return GestureDetector(
-//       onTap: onTap,
-//       child: Container(
-//         padding: EdgeInsets.all(8.r),
-//         decoration: BoxDecoration(
-//           color: ColorManager.backgroundSurface2,
-//           border: Border.all(color: ColorManager.borderColor2),
-//           borderRadius: BorderRadius.circular(8.r),
-//         ),
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             SvgPicture.asset(icon, height: 22.h, width: 22.w),
-//             8.verticalSpace,
-//             Text(
-//               title,
-//               style: getRegular400Style14(color: ColorManager.textPrimary),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
