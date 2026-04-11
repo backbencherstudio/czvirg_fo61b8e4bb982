@@ -19,6 +19,12 @@ class AppRouter {
         );
       case RouteName.progressScreen:
         return MaterialPageRoute(builder: (_) => const ProgressScreen());
+      case RouteName.videoPlayerScreen:
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final videoData = args['videoData'] as VideoResourceModel;
+        return MaterialPageRoute(
+          builder: (_) => VideoPlayerScreen(videoData: videoData),
+        );
       default:
         return unDefineRoute();
     }
