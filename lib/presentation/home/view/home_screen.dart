@@ -33,7 +33,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ImageManager.homeImage,
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: 200,
+                height: 200.h,
               ),
               60.verticalSpace,
               GestureDetector(
@@ -59,6 +59,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ref
                       .read(roleSelectionProvider.notifier)
                       .selectRole('education');
+                  Navigator.pushNamed(context, RouteName.lifeEducationScreen);
                 },
                 child: MenuSelectionCard(
                   title: l10n.lifeEducationSeries,

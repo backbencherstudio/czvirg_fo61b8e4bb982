@@ -25,6 +25,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => VideoPlayerScreen(videoData: videoData),
         );
+      case RouteName.lifeEducationScreen:
+        return MaterialPageRoute(builder: (_) => const LifeEducationScreen());
       default:
         return unDefineRoute();
     }
