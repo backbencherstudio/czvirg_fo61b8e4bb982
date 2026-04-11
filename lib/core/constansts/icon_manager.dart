@@ -40,4 +40,5 @@ class IconManager {
   static String arrowRight = '$baseUrl/arrow-right-02.svg';
   static String arrowDown = '$baseUrl/arrow-down-right-01.svg';
   static String repeat = '$baseUrl/repeat.svg';
+  static String play = '$baseUrl/boxicons_play.svg';
 }

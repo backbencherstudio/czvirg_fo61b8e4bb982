@@ -56,9 +56,9 @@ class _SplashScreenState extends State<SplashScreen> {
       body: _controller.value.isInitialized
           ? Center(
               child: SizedBox(
-                width: 303.w,
+                width: double.infinity,
                 height: 276.h,
-                child: VideoPlayer(_controller),
+                child: VideoPlayer(_controller), 
               ),
             )
           : const Center(child: CircularProgressIndicator()),

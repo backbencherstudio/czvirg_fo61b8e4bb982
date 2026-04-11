@@ -6,4 +6,5 @@ class RouteName {
   static const String inhaleHoldExhaleScreen = "/InhaleHoldExhaleScreen";
   static const String progressScreen = "/ProgressScreen";
   static const String videoPlayerScreen = "/VideoPlayerScreen";
+  static const String lifeEducationScreen = "/LifeEducationScreen";
 }

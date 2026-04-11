@@ -41,7 +41,7 @@ class _BreathingPractiveScreenState extends State<BreathingPractiveScreen> {
                 child: Image.asset(
                   ImageManager.cvLogo,
                   height: 122.h,
-                  width: 195.w,
+                  width: double.infinity,
                 ),
               ),
               24.verticalSpace,
