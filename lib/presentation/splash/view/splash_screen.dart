@@ -1,7 +1,10 @@
+import 'package:czvirg_fo61b8e4bb982/core/constansts/color_manger.dart';
 import 'package:czvirg_fo61b8e4bb982/core/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../../core/resource/utils.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -51,6 +54,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
+    Utils.setStatusBarStyle(ColorManager.whiteColor);
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: _controller.value.isInitialized
@@ -58,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: SizedBox(
                 width: double.infinity,
                 height: 276.h,
-                child: VideoPlayer(_controller), 
+                child: VideoPlayer(_controller),
               ),
             )
           : const Center(child: CircularProgressIndicator()),
