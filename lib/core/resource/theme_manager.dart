@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../constansts/color_manger.dart';
 import 'font_manager.dart';
@@ -8,6 +9,7 @@ import 'values_manager.dart';
 ThemeData getApplicationTheme() {
   return ThemeData(
     useMaterial3: false, // set true if using Material 3
+    fontFamily: FontConstants.fontFamily,
     // ===== Main colors =====
     primaryColor: ColorManager.primary,
     primaryColorLight: ColorManager.primaryLight,
@@ -71,7 +73,7 @@ ThemeData getApplicationTheme() {
     ),
 
     // ===== Text Theme =====
-    textTheme: TextTheme(
+    textTheme: GoogleFonts.dmSansTextTheme().copyWith(
       headlineLarge: getSemiBold600Style12(
         color: ColorManager.blackColor,
         fontSize: FontSize.s20,

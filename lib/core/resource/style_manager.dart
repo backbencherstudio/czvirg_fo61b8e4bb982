@@ -4,7 +4,7 @@ import 'font_manager.dart';
 // Fixed: Added the missing `fontWeight` property inside the TextStyle return
 TextStyle _getTextStyle(
   double fontSize,
-  String fontFamily,
+  String? fontFamily,
   FontWeight fontWeight,
   Color color,
 ) {

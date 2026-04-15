@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FontConstants {
-  static const String fontFamily = "roboto";
+  static String? get fontFamily => GoogleFonts.dmSans().fontFamily;
 }
-
-// class FontConstants {
-//   static const String fontFamily = "DMSans";
-// }
 class FontWeightManager {
   static const FontWeight light300 = FontWeight.w300;
   static const FontWeight regular400 = FontWeight.w400;

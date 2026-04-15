@@ -7,7 +7,6 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../core/constansts/color_manger.dart';
 import '../../benefits/model/benefit_model.dart';
 
-
 class VideoPlayerScreen extends StatefulWidget {
   final VideoResourceModel videoData;
 
@@ -28,7 +27,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     _controller = YoutubePlayerController(
       initialVideoId: videoId,
       flags: const YoutubePlayerFlags(
-        autoPlay: false, 
+        autoPlay: false,
         mute: false,
         hideControls: true, // Hide default controls to use custom UI
       ),
@@ -69,7 +68,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                20.verticalSpace,
+                // 20.verticalSpace,
 
                 // --- BACK BUTTON ---
                 GestureDetector(
@@ -89,7 +88,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   height: 200.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF1A1A1A), 
+                    color: const Color(0xFF1A1A1A),
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   clipBehavior: Clip.antiAlias,
@@ -101,7 +100,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                           child: FittedBox(
                             fit: BoxFit.cover,
                             child: SizedBox(
-                              width: 1600, 
+                              width: 1600,
                               height: 900,
                               child: YoutubePlayer(
                                 controller: _controller,
@@ -129,7 +128,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                             width: 56.r,
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color(0xFFBBE5F1), 
+                              color: Color(0xFFBBE5F1),
                             ),
                             child: Icon(
                               Icons.play_arrow_rounded,
@@ -204,7 +203,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     style: GoogleFonts.inter(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
-                      color: ColorManager.primary, 
+                      color: ColorManager.primary,
                     ),
                   ),
                 ),
@@ -215,14 +214,17 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   children: [
                     Expanded(
                       child: _buildStatCard(
-                        topText: widget.videoData.timesWatched.toString(), // <--- Times Watched
+                        topText: widget.videoData.timesWatched
+                            .toString(), // <--- Times Watched
                         bottomText: 'Times Watched',
                       ),
                     ),
                     12.horizontalSpace,
                     Expanded(
                       child: _buildStatCard(
-                        topText: widget.videoData.lastWatchedDate, // <--- Last Watched Date
+                        topText: widget
+                            .videoData
+                            .lastWatchedDate, // <--- Last Watched Date
                         bottomText: 'Times Watched',
                       ),
                     ),
@@ -241,7 +243,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 GestureDetector(
                   onTap: () async {
                     // <--- Launch the specific video URL
-                    final Uri url = Uri.parse(widget.videoData.youtubeUrl); 
+                    final Uri url = Uri.parse(widget.videoData.youtubeUrl);
                     if (!await launchUrl(
                       url,
                       mode: LaunchMode.externalApplication,
@@ -255,13 +257,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     decoration: BoxDecoration(
                       color: ColorManager.backgroundSurface3.withValues(
                         alpha: 0.13,
-                      ), 
+                      ),
                       borderRadius: BorderRadius.circular(12.r),
                       border: Border.all(
                         color: ColorManager.backgroundSurface3.withValues(
                           alpha: 0.24,
                         ),
-                      ), 
+                      ),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

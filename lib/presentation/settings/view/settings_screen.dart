@@ -2,7 +2,6 @@ import 'package:czvirg_fo61b8e4bb982/core/resource/style_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../core/constansts/color_manger.dart';
 import '../viewmodel/setting_toggle_provider.dart';
 import 'widgets/setting_item.dart';
@@ -28,10 +27,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             children: [
               Text(
                 'Settings',
-                style: GoogleFonts.armata(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
+                style: TextStyle(
+                  fontSize: 32.sp,
                   color: ColorManager.titleText,
+                  fontFamily: 'Armada',
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               20.verticalSpace,

@@ -71,10 +71,11 @@ class _ExercisesScreenState extends ConsumerState<ExercisesScreen> {
             children: [
               Text(
                 'Exercises',
-                style: GoogleFonts.armata(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
+                style: TextStyle(
+                  fontSize: 32.sp,
                   color: ColorManager.titleText,
+                  fontFamily: 'Armada',
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               20.verticalSpace,
