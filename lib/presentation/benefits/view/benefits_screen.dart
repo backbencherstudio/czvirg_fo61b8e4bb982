@@ -3,7 +3,6 @@ import 'package:czvirg_fo61b8e4bb982/presentation/custom_widgets/primary_button.
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../core/constansts/color_manger.dart';
 import '../../../core/resource/style_manager.dart';
 import '../../../core/utils/share_utils.dart';
@@ -58,10 +57,11 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
             children: [
               Text(
                 'Benefits',
-                style: GoogleFonts.armata(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
+                style: TextStyle(
+                  fontSize: 32.sp,
                   color: ColorManager.titleText,
+                  fontFamily: 'Armada',
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               20.verticalSpace,
