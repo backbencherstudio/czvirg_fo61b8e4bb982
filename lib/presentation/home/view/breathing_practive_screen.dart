@@ -23,77 +23,86 @@ class _BreathingPractiveScreenState extends State<BreathingPractiveScreen> {
     return Scaffold(
       backgroundColor: ColorManager.blackColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(
-                    Icons.arrow_back_rounded,
-                    color: ColorManager.whiteColor,
-                  ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.arrow_back_rounded,
+                  color: ColorManager.whiteColor,
                 ),
-                16.verticalSpace,
-                Center(
-                  child: Image.asset(
-                    ImageManager.cvLogo,
-                    height: 122.h,
-                    width: double.infinity,
-                  ),
-                ),
-                24.verticalSpace,
-                Text(
-                  l10n.breathingPractices,
-                  style: TextStyle(
-                    fontSize: 28.sp,
-                    color: ColorManager.titleText,
-                    fontFamily: 'Armada',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                8.verticalSpace,
-                Text(
-                  l10n.chooseATechniqueThatMatchesYourNeeds,
-                  style: getRegular400Style14(
-                    color: ColorManager.textSecondary,
-                  ),
-                ),
-                24.verticalSpace,
-                ListView.separated(
-                  itemCount: 4,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final practice = BreathPracticeData.getPractices(
-                      context,
-                    )[index];
-                    return GestureDetector(
-                      onTap: () {
-                        if (index == 0) {
-                          Navigator.pushNamed(
-                            context,
-                            RouteName.inhaleHoldExhaleScreen,
-                          );
-                        }
-                      },
-                      child: BreathPracticeCard(
-                        breathPracticeModel: practice,
-                        isCustom: practice.isCustom,
-                        isSelected: practice.isSelected,
+              ),
+              16.verticalSpace,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Image.asset(
+                          ImageManager.cvLogo,
+                          height: 130.h,
+                          width: double.infinity,
+                        ),
                       ),
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return 16.verticalSpace;
-                  },
+                      24.verticalSpace,
+                      Text(
+                        l10n.breathingPractices,
+                        style: TextStyle(
+                          fontSize: 28.sp,
+                          color: ColorManager.titleText,
+                          fontFamily: 'Armada',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      8.verticalSpace,
+                      Text(
+                        l10n.chooseATechniqueThatMatchesYourNeeds,
+                        style: getRegular400Style14(
+                          color: ColorManager.textSecondary,
+                        ),
+                      ),
+                      24.verticalSpace,
+                      ListView.separated(
+                        itemCount: 4,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final practice = BreathPracticeData.getPractices(
+                            context,
+                          )[index];
+                          return GestureDetector(
+                            onTap: () {
+                              if (index == 0) {
+                                Navigator.pushNamed(
+                                  context,
+                                  RouteName.inhaleHoldExhaleScreen,
+                                );
+                              }
+                            },
+                            child: BreathPracticeCard(
+                              breathPracticeModel: practice,
+                              isCustom: practice.isCustom,
+                              isSelected: practice.isSelected,
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return 16.verticalSpace;
+                        },
+                      ),
+                      40.verticalSpace,
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

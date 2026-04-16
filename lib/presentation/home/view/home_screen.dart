@@ -24,7 +24,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       backgroundColor: ColorManager.blackColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -33,7 +33,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ImageManager.homeImage,
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: 200.h,
+                height: 210.h,
               ),
               60.verticalSpace,
               GestureDetector(
