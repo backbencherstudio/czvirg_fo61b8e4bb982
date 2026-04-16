@@ -1,4 +1,5 @@
 import 'package:czvirg_fo61b8e4bb982/core/constansts/icon_manager.dart';
+import 'package:czvirg_fo61b8e4bb982/core/route/route_name.dart';
 import 'package:czvirg_fo61b8e4bb982/presentation/custom_widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -209,7 +210,16 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                         },
                       ),
                       24.verticalSpace,
-                      PrimaryButton(title: 'Start Breathing', onTap: () {}),
+                      PrimaryButton(
+                        title: 'Start Breathing',
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RouteName.breathingPractiveScreen,
+                          );
+                        },
+                      ),
+                      40.verticalSpace,
                     ],
                   ),
                 ),

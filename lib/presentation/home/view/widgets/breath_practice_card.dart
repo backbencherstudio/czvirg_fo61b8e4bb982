@@ -23,13 +23,11 @@ class BreathPracticeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       decoration: BoxDecoration(
-        color: ColorManager.primary.withValues(alpha: 0.13),
+        color: ColorManager.backgroundSurface2,
         borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(
-          color: isSelected == true ? ColorManager.primary : Colors.transparent,
-        ),
+        border: Border.all(color: ColorManager.borderColor),
       ),
       child: Row(
         children: [
@@ -42,8 +40,8 @@ class BreathPracticeCard extends StatelessWidget {
               padding: EdgeInsets.all(10.r),
               child: SvgPicture.asset(
                 breathPracticeModel.image,
-                height: 44.h,
-                width: 44.w,
+                height: 24.h,
+                width: 24.w,
               ),
             ),
           ),
@@ -140,7 +138,7 @@ class BreathPracticeCard extends StatelessWidget {
           Icon(
             Icons.arrow_forward_ios,
             color: ColorManager.primary,
-            size: 24.r,
+            size: 18.r,
           ),
         ],
       ),
