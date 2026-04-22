@@ -11,6 +11,8 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../core/constansts/color_manger.dart';
 import '../../custom_widgets/primary_button.dart';
 import '../viewmodel/manage_stage_provider.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:flutter/services.dart';
 
 
 
@@ -24,6 +26,10 @@ class InhaleHoldExhaleScreen extends ConsumerStatefulWidget {
 
 class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen> {
   Timer? _timer;
+  final AudioPlayer _audioPlayer = AudioPlayer();
+
+  bool isMuted = false;
+  bool isVibrationOn = true;
 
   // Session Settings
   final int totalDurationMs = 60000; // 1 Minute default
@@ -46,12 +52,16 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
   @override
   void dispose() {
     _timer?.cancel();
+    _audioPlayer.dispose();
     super.dispose();
   }
 
   void _startSession() {
     ref.read(manageStageProvider.notifier).state = 'active';
     _timer?.cancel();
+    
+    // Play initial sound
+    _playSoundAndVibrate(currentPhase);
     
     // Ticking every 50ms for buttery smooth circular and linear animations
     _timer = Timer.periodic(const Duration(milliseconds: 50), (timer) {
@@ -73,6 +83,7 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
         if (totalElapsedMs >= totalDurationMs) {
           _timer?.cancel();
           ref.read(manageStageProvider.notifier).state = 'end';
+          _playSoundAndVibrate('FINISHED');
         }
       });
     });
@@ -90,6 +101,34 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
       currentPhase = 'INHALE';
       currentPhaseDurationMs = 4000; // 4 seconds
       if (cyclesLeft > 0) cyclesLeft--;
+    }
+    _playSoundAndVibrate(currentPhase);
+  }
+
+  Future<void> _playSoundAndVibrate(String phase) async {
+    if (isVibrationOn) {
+      HapticFeedback.vibrate();
+    }
+    if (!isMuted) {
+      try {
+        String assetPath = '';
+        if (phase == 'INHALE') {
+          assetPath = 'assets/audio/Inhale2.m4a';
+        } else if (phase == 'HOLD') {
+          assetPath = 'assets/audio/Hold 2.m4a';
+        } else if (phase == 'EXHALE') {
+          assetPath = 'assets/audio/Exhale2.m4a';
+        } else if (phase == 'FINISHED') {
+          assetPath = 'assets/audio/Finished 2.m4a';
+        }
+        
+        if (assetPath.isNotEmpty) {
+          await _audioPlayer.setAsset(assetPath);
+          _audioPlayer.play();
+        }
+      } catch (e) {
+        debugPrint('Error playing audio: $e');
+      }
     }
   }
 
@@ -144,19 +183,44 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset(
-                    IconManager.speaker,
-                    height: 24.h,
-                    width: 24.h,
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isMuted = !isMuted;
+                      });
+                      if (isMuted) {
+                        _audioPlayer.stop();
+                      }
+                    },
+                    child: AnimatedOpacity(
+                      opacity: isMuted ? 0.4 : 1.0,
+                      duration: const Duration(milliseconds: 200),
+                      child: SvgPicture.asset(
+                        IconManager.speaker,
+                        height: 24.h,
+                        width: 24.h,
+                      ),
+                    ),
                   ),
                   Text(
                     _formattedTime, // Dynamic Time
                     style: getMedium500Style16(color: ColorManager.primary),
                   ),
-                  SvgPicture.asset(
-                    IconManager.biPhone,
-                    height: 24.h,
-                    width: 24.h,
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isVibrationOn = !isVibrationOn;
+                      });
+                    },
+                    child: AnimatedOpacity(
+                      opacity: isVibrationOn ? 1.0 : 0.4,
+                      duration: const Duration(milliseconds: 200),
+                      child: SvgPicture.asset(
+                        IconManager.biPhone,
+                        height: 24.h,
+                        width: 24.h,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -218,6 +282,7 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
                 const Spacer(),
                 GestureDetector(
                   onTap: () {
+                    _audioPlayer.stop();
                     ref.read(manageStageProvider.notifier).state = 'stop';
                   },
                   child: Container(
@@ -273,6 +338,7 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
                         onTap: () {
                           // Resumes timer naturally
                           ref.read(manageStageProvider.notifier).state = 'active';
+                          _playSoundAndVibrate(currentPhase);
                         },
                       ),
                       16.verticalSpace,

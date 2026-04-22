@@ -83,6 +83,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/audio/
   fonts:
     - family: Armada
       fonts:
