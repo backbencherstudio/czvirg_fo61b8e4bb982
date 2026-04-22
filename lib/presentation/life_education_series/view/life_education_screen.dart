@@ -14,26 +14,14 @@ class LifeEducationScreen extends ConsumerStatefulWidget {
   const LifeEducationScreen({super.key});
 
   @override
-  ConsumerState<LifeEducationScreen> createState() => _LifeEducationScreenState();
+  ConsumerState<LifeEducationScreen> createState() =>
+      _LifeEducationScreenState();
 }
 
 class _LifeEducationScreenState extends ConsumerState<LifeEducationScreen> {
-  late final List<VideoResourceModel> videoResources;
-
   @override
   void initState() {
     super.initState();
-    videoResources = List.generate(
-      7,
-      (index) => VideoResourceModel(
-        title: 'Life Optimization Part ${index + 1}',
-        subtitle: 'Life Optimization Series',
-        youtubeUrl: 'https://youtu.be/-7-CAFhJn78?si=-295kRl0_r8D2twb',
-        videoId: '-7-CAFhJn78',
-        timesWatched: index == 0 ? 1 : 0,
-        lastWatchedDate: index == 0 ? 'March 28, 2026' : 'Unwatched',
-      ),
-    );
   }
 
   @override
@@ -92,7 +80,9 @@ class _LifeEducationScreenState extends ConsumerState<LifeEducationScreen> {
 
                       Consumer(
                         builder: (context, ref, child) {
-                          final selectedIndex = ref.watch(selectedWatchedProvider);
+                          final selectedIndex = ref.watch(
+                            selectedWatchedProvider,
+                          );
                           return ListView.separated(
                             itemCount: videoResources.length,
                             shrinkWrap: true,
@@ -107,7 +97,12 @@ class _LifeEducationScreenState extends ConsumerState<LifeEducationScreen> {
                                 video: videoData,
                                 isSelected: selectedIndex == index,
                                 onTap: () {
-                                  ref.read(selectedWatchedProvider.notifier).state = index;
+                                  ref
+                                          .read(
+                                            selectedWatchedProvider.notifier,
+                                          )
+                                          .state =
+                                      index;
                                   Navigator.pushNamed(
                                     context,
                                     RouteName.videoPlayerScreen,
