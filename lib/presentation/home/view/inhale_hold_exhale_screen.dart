@@ -394,7 +394,6 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
                   ),
                 ),
               ],
-
               // Bottom padding (Always applied)
               32.verticalSpace,
             ],
