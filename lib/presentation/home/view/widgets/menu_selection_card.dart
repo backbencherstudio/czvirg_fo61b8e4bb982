@@ -24,10 +24,13 @@ class MenuSelectionCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
       decoration: BoxDecoration(
-        color: ColorManager.primary.withValues(alpha: 0.13),
+        color: isSelected == true
+            ? ColorManager.primary.withValues(alpha: 0.13)
+            : ColorManager.backgroundSurface2,
         borderRadius: BorderRadius.circular(8.r),
         border: Border.all(
-          color: isSelected ? ColorManager.primary : Colors.transparent,
+          color: isSelected ? ColorManager.primary : ColorManager.borderColor2,
+          width: 1.5.w,
         ),
       ),
       child: Row(
