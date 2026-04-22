@@ -44,6 +44,32 @@ final List<ExerciseModel> defaultExercises = [
       ),
     ],
   ),
+
+  ExerciseModel(
+    id: '4',
+    name: 'Rectangle',
+    steps: [
+      ExerciseStep(title: 'Inhale', durationSec: 4, icon: IconManager.arrowUp),
+      ExerciseStep(
+        title: 'Exhale',
+        durationSec: 4,
+        icon: IconManager.arrowDown,
+      ),
+    ],
+  ),
+
+  ExerciseModel(
+    id: '5',
+    name: '1:2 Ratio',
+    steps: [
+      ExerciseStep(title: 'Inhale', durationSec: 4, icon: IconManager.arrowUp),
+      ExerciseStep(
+        title: 'Exhale',
+        durationSec: 4,
+        icon: IconManager.arrowDown,
+      ),
+    ],
+  ),
 ];
 
 // --- Provider ---
