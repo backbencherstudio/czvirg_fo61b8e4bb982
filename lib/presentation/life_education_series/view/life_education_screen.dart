@@ -6,16 +6,18 @@ import '../../../core/resource/style_manager.dart';
 import '../../../core/route/route_name.dart';
 import '../../../core/utils/share_utils.dart';
 import '../../benefits/model/benefit_model.dart';
+import '../viewmodel/selected_watched_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'widgets/video_series.dart';
 
-class LifeEducationScreen extends StatefulWidget {
+class LifeEducationScreen extends ConsumerStatefulWidget {
   const LifeEducationScreen({super.key});
 
   @override
-  State<LifeEducationScreen> createState() => _LifeEducationScreenState();
+  ConsumerState<LifeEducationScreen> createState() => _LifeEducationScreenState();
 }
 
-class _LifeEducationScreenState extends State<LifeEducationScreen> {
+class _LifeEducationScreenState extends ConsumerState<LifeEducationScreen> {
   late final List<VideoResourceModel> videoResources;
 
   @override
@@ -88,29 +90,36 @@ class _LifeEducationScreenState extends State<LifeEducationScreen> {
                       Divider(color: ColorManager.borderColor2, thickness: 2.w),
                       24.verticalSpace,
 
-                      ListView.separated(
-                        itemCount: videoResources.length,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        separatorBuilder: (context, index) {
-                          return 12.verticalSpace;
-                        },
-                        itemBuilder: (context, index) {
-                          final videoData = videoResources[index];
-                          return VideoSeries(
-                            index: index + 1,
-                            video: videoData,
-                            onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                RouteName.videoPlayerScreen,
-                                arguments: {'videoData': videoData},
-                              );
+                      Consumer(
+                        builder: (context, ref, child) {
+                          final selectedIndex = ref.watch(selectedWatchedProvider);
+                          return ListView.separated(
+                            itemCount: videoResources.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            separatorBuilder: (context, index) {
+                              return 12.verticalSpace;
                             },
-                            onShareTap: () async {
-                              await ShareUtils.shareContent(
-                                title: videoData.title,
-                                url: videoData.youtubeUrl,
+                            itemBuilder: (context, index) {
+                              final videoData = videoResources[index];
+                              return VideoSeries(
+                                index: index + 1,
+                                video: videoData,
+                                isSelected: selectedIndex == index,
+                                onTap: () {
+                                  ref.read(selectedWatchedProvider.notifier).state = index;
+                                  Navigator.pushNamed(
+                                    context,
+                                    RouteName.videoPlayerScreen,
+                                    arguments: {'videoData': videoData},
+                                  );
+                                },
+                                onShareTap: () async {
+                                  await ShareUtils.shareContent(
+                                    title: videoData.title,
+                                    url: videoData.youtubeUrl,
+                                  );
+                                },
                               );
                             },
                           );

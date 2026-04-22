@@ -12,6 +12,7 @@ class VideoSeries extends StatelessWidget {
   final VideoResourceModel video;
   final VoidCallback onTap;
   final VoidCallback onShareTap;
+  final bool isSelected;
 
   const VideoSeries({
     super.key,
@@ -19,6 +20,7 @@ class VideoSeries extends StatelessWidget {
     required this.video,
     required this.onTap,
     required this.onShareTap,
+    this.isSelected = false,
   });
 
   @override
@@ -28,9 +30,15 @@ class VideoSeries extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16.r),
         decoration: BoxDecoration(
-          color: ColorManager.backgroundSurface2.withValues(alpha: 0.13),
+          color: isSelected
+              ? ColorManager.primary.withValues(alpha: 0.13)
+              : ColorManager.backgroundSurface2.withValues(alpha: 0.13),
           borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(color: ColorManager.borderColor2),
+          border: Border.all(
+            color: isSelected
+                ? ColorManager.primary.withValues(alpha: 0.5)
+                : ColorManager.borderColor2,
+          ),
         ),
         child: Row(
           children: [
@@ -43,7 +51,10 @@ class VideoSeries extends StatelessWidget {
               padding: EdgeInsets.all(8.r),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: ColorManager.borderColor3, width: 2.w),
+                border: Border.all(
+                  color: ColorManager.borderColor3,
+                  width: 2.w,
+                ),
                 color: ColorManager.backgroundSurface2,
               ),
               child: SvgPicture.asset(
@@ -64,11 +75,36 @@ class VideoSeries extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   4.verticalSpace,
-                  Text(
-                    '${video.timesWatched}x ${video.lastWatchedDate}',
-                    style: getRegular400Style14(color: ColorManager.textSecondary),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  Row(
+                    children: [
+                      Text(
+                        '${video.timesWatched}x ${video.lastWatchedDate}',
+                        style: getRegular400Style14(
+                          color: ColorManager.textSecondary,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      if (isSelected) ...[
+                        4.horizontalSpace,
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 6.w,
+                            vertical: 2.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: ColorManager.primary.withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(4.r),
+                          ),
+                          child: Text(
+                            'Watched',
+                            style: getMedium500Style12(
+                              color: ColorManager.primary,
+                            ).copyWith(fontSize: 10.sp),
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
                 ],
               ),
@@ -78,7 +114,11 @@ class VideoSeries extends StatelessWidget {
               onTap: onShareTap,
               child: Padding(
                 padding: EdgeInsets.all(4.r),
-                child: SvgPicture.asset(IconManager.fluentShare, height: 24.h, width: 24.w),
+                child: SvgPicture.asset(
+                  IconManager.fluentShare,
+                  height: 24.h,
+                  width: 24.w,
+                ),
               ),
             ),
           ],

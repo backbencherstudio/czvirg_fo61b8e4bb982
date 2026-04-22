@@ -25,9 +25,13 @@ class BreathPracticeCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       decoration: BoxDecoration(
-        color: ColorManager.backgroundSurface2,
+        color: isSelected == true
+            ? ColorManager.primary.withValues(alpha: 0.13)
+            : ColorManager.backgroundSurface2,
         borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: ColorManager.borderColor),
+        border: isSelected == true
+            ? Border.all(color: ColorManager.primary, width: 1.5.w)
+            : Border.all(color: ColorManager.borderColor, width: 1.5.w),
       ),
       child: Row(
         children: [

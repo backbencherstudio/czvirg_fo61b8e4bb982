@@ -54,7 +54,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
     Utils.setStatusBarStyle(ColorManager.whiteColor);
 
     return Scaffold(
@@ -63,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ? Center(
               child: SizedBox(
                 width: double.infinity,
-                height: 276.h,
+                height: 230.h,
                 child: VideoPlayer(_controller),
               ),
             )
