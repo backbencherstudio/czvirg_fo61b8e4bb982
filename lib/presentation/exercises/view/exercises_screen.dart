@@ -29,15 +29,15 @@ class _ExercisesScreenState extends ConsumerState<ExercisesScreen> {
     // Using a suitable Youtube video for '4-7-8 Breathing'
     final videoId =
         YoutubePlayer.convertUrlToId(
-          'https://youtu.be/acUZdGd_3Dg?si=Hqs8bDpNvHDLy3B4',
+          'https://www.youtube.com/watch?v=p8fjYPC-k2k',
         ) ??
-        'acUZdGd_3Dg';
+        'p8fjYPC-k2k';
     _youtubeController = YoutubePlayerController(
       initialVideoId: videoId,
       flags: const YoutubePlayerFlags(
         autoPlay: false,
         mute: true,
-        hideControls: true,
+        // hideControls: true,
       ),
     );
   }
@@ -90,12 +90,12 @@ class _ExercisesScreenState extends ConsumerState<ExercisesScreen> {
                         onTap: () {
                           launchUrl(
                             Uri.parse(
-                              'https://www.youtube.com/watch?v=acUZdGd_3Dg&list=PL5111000000000000&index=1',
+                              'https://www.youtube.com/watch?v=p8fjYPC-k2k',
                             ),
                           );
                         },
                         child: Container(
-                          height: 190.h,
+                          height: 177.h,
                           width: double.infinity,
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
@@ -112,6 +112,29 @@ class _ExercisesScreenState extends ConsumerState<ExercisesScreen> {
                                 child: YoutubePlayer(
                                   controller: _youtubeController,
                                   showVideoProgressIndicator: true,
+                                  thumbnail: Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      Image.network(
+                                        'https://img.youtube.com/vi/p8fjYPC-k2k/hqdefault.jpg',
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Center(
+                                        child: Container(
+                                          padding: EdgeInsets.all(16.r),
+                                          decoration: const BoxDecoration(
+                                            color: Colors.black54,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Icon(
+                                            Icons.play_arrow,
+                                            color: Colors.white,
+                                            size: 250.sp,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
