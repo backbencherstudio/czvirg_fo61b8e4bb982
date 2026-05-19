@@ -11,8 +11,9 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../core/constansts/color_manger.dart';
 import '../../custom_widgets/primary_button.dart';
 import '../viewmodel/manage_stage_provider.dart';
+import '../viewmodel/vibration_provider.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:flutter/services.dart';
+
 
 
 
@@ -29,7 +30,6 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   bool isMuted = false;
-  bool isVibrationOn = true;
 
   // Session Settings
   final int totalDurationMs = 60000; // 1 Minute default
@@ -106,9 +106,7 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
   }
 
   Future<void> _playSoundAndVibrate(String phase) async {
-    if (isVibrationOn) {
-      HapticFeedback.vibrate();
-    }
+    ref.read(vibrationProvider.notifier).vibratePhase(phase);
     if (!isMuted) {
       try {
         String assetPath = '';
@@ -171,6 +169,7 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
   @override
   Widget build(BuildContext context) {
     final stage = ref.watch(manageStageProvider);
+    final isVibrationOn = ref.watch(vibrationProvider);
 
     return Scaffold(
       backgroundColor: ColorManager.blackColor,
@@ -208,9 +207,7 @@ class _InhaleHoldExhaleScreenState extends ConsumerState<InhaleHoldExhaleScreen>
                   ),
                   GestureDetector(
                     onTap: () {
-                      setState(() {
-                        isVibrationOn = !isVibrationOn;
-                      });
+                      ref.read(vibrationProvider.notifier).toggleVibration();
                     },
                     child: AnimatedOpacity(
                       opacity: isVibrationOn ? 1.0 : 0.4,
