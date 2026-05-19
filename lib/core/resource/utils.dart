@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-
 import '../constansts/color_manger.dart';
 
 class Utils {
@@ -114,6 +113,7 @@ class Utils {
   static void setStatusBarStyle(Color backgroundColor) {
     final brightness = ThemeData.estimateBrightnessForColor(backgroundColor);
 
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         // Status bar
@@ -130,7 +130,7 @@ class Utils {
             : Brightness.dark,
 
         // Navigation bar
-        systemNavigationBarColor: backgroundColor,
+        systemNavigationBarColor: Colors.transparent,
         systemNavigationBarIconBrightness: brightness == Brightness.dark
             ? Brightness.light
             : Brightness.dark,

@@ -54,8 +54,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Utils.setStatusBarStyle(ColorManager.whiteColor);
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: _controller.value.isInitialized

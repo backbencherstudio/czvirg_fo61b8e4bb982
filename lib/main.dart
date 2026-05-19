@@ -25,6 +25,8 @@ class MyApp extends ConsumerWidget {
         title: 'CLARAVIDA',
         debugShowCheckedModeBanner: false,
         theme: getApplicationTheme(),
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.dark,
         localizationsDelegates: [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

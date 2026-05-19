@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../core/constansts/color_manger.dart';
 import '../../../core/constansts/icon_manager.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../core/resource/utils.dart';
 import '../../benefits/view/benefits_screen.dart';
 import '../../exercises/view/exercises_screen.dart';
 import '../../home/view/home_screen.dart';
@@ -27,6 +28,7 @@ class BottomNavBarScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Utils.setStatusBarStyle(ColorManager.blackColor);
     final currentIndex = ref.watch(bottomNavIndexProvider);
     final l10n = AppLocalizations.of(context)!;
     final navItems = [
